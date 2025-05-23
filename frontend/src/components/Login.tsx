@@ -40,13 +40,6 @@ const Login = () => {
             </Link>
             <h4 className="text-xl font-semibold flex justify-center">INLOGGNING</h4>
 
-            {/*<div className="flex justify-self-center gap-4 text-sm font-medium bg-gray-400 rounded-full">*/}
-            {/*    <button className="py-1 px-3 border-b-2 border-blue-600 bg-white rounded-full">*/}
-            {/*        Privat*/}
-            {/*    </button>*/}
-            {/*    <button className="py-1 px-3 text-gray-500 bg-white rounded-full">Företag</button>*/}
-            {/*</div>*/}
-
             <div className="flex justify-center gap-4 text-sm font-medium bg-gray-300 p-1 rounded-full">
                 <button
                     onClick={() => setSelected('privat')}
