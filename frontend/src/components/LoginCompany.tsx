@@ -9,11 +9,10 @@ const users = [
     }
 ];
 
-const Login = () => {
+const LoginCompany = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    const [selected, setSelected] = useState('privat');
 
     const navigate = useNavigate();
 
@@ -32,48 +31,14 @@ const Login = () => {
 
     return (
         <div className="pt-20 px-4 max-w-md mx-auto space-y-4 ">
-            <Link
-                to="/"
-                className="text-xl font-bold tracking-wide text-blue-600 flex justify-center"
-            >
-                ELECTRIC
-            </Link>
-            <h4 className="text-xl font-semibold flex justify-center">INLOGGNING</h4>
+            <header>
 
-            {/*<div className="flex justify-self-center gap-4 text-sm font-medium bg-gray-400 rounded-full">*/}
-            {/*    <button className="py-1 px-3 border-b-2 border-blue-600 bg-white rounded-full">*/}
-            {/*        Privat*/}
-            {/*    </button>*/}
-            {/*    <button className="py-1 px-3 text-gray-500 bg-white rounded-full">Företag</button>*/}
-            {/*</div>*/}
-
-            <div className="flex justify-center gap-4 text-sm font-medium bg-gray-300 p-1 rounded-full">
-                <button
-                    onClick={() => setSelected('privat')}
-                    className={`py-1 px-4 rounded-full transition-colors duration-200 ${
-                        selected === 'privat'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-600'
-                    }`}
-                >
-                    Privat
-                </button>
-                <button
-                    onClick={() => {
-                        setSelected('foretag');
-                        navigate('/foretag'); // Redirect to Företag page
-                    }}
-                    className={`py-1 px-4 rounded-full transition-colors duration-200 ${
-                        selected === 'foretag'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-600'
-                    }`}
-                >
-                    Företag
-                </button>
-            </div>
+                <Link to='/login'> Tillbaka</Link>
+                <Link to='/'> företag</Link>
+            </header>
 
             <div className="space-y-2">
+                <h4 className="flex justify-center font-bold text-xl">Logga in</h4>
                 <label htmlFor="email" className="block text-sm font-medium">
                     E-post
                 </label>
@@ -98,7 +63,7 @@ const Login = () => {
 
                 <Link
                     to="/forget-pass"
-                    className="block text-blue-600 text-sm mt-2 flex justify-end"
+                    className="block text-blue-600 text-sm mt-2 flex justify-center"
                 >
                     Glömt ditt lösenord?
                 </Link>
@@ -111,13 +76,13 @@ const Login = () => {
                 >
                     Logga in
                 </button>
-                <div className="flex justify-center">
+                <div className="grid justify-items-center">
                     <p>Har ni inget konto? </p>
-                    <Link to='/register' className="underline">Registera</Link>
+                    <button className="px-4 py-2 border-2 rounded-full border-green-500 text-green-500 w-full ">Skapa konto</button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default LoginCompany;

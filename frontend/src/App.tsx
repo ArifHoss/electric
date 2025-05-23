@@ -10,6 +10,8 @@ import Profile from './components/Profile';
 import Login from './components/Login';
 import Cart from './components/Cart.tsx'
 import Location from "./components/Location.tsx";
+import Register from "./components/Register.tsx";
+import LoginCompany from "./components/LoginCompany.tsx";
 
 // Layout with Navbar + page content
 const Layout = () => (
@@ -31,6 +33,8 @@ function App() {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/cart" element={<Cart/>}/>
                     <Route path="/location" element={<Location/>}/>
+                    <Route path="/register" element={<Register/>}/>
+                    <Route path="/foretag" element={<LoginCompany/>}/>
                 </Route>
             </Routes>
         </Router>
