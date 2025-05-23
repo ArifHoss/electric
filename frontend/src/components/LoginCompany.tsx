@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import {FaEdgeLegacy} from "react-icons/fa";
 
 const users = [
     {
@@ -31,10 +32,9 @@ const LoginCompany = () => {
 
     return (
         <div className="pt-20 px-4 max-w-md mx-auto space-y-4 ">
-            <header>
-
+            <header className="flex justify-center py-2 gap-20">
                 <Link to='/login'> Tillbaka</Link>
-                <Link to='/'> företag</Link>
+                <Link to='/' className="flex">  företag <FaEdgeLegacy className="text-2xl text-green-700 font-bold"/></Link>
             </header>
 
             <div className="space-y-2">

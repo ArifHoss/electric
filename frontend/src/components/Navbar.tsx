@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'; // ← add useRef and useEffect
 import { Link } from 'react-router-dom';
 import { FiMenu, FiUser, FiShoppingCart, FiMapPin } from 'react-icons/fi';
-import { FaTimes } from 'react-icons/fa';
+import { FaTimes ,FaEdgeLegacy} from 'react-icons/fa';
 
 const menuItems = [
     { label: 'Datorer & Kontor', to: '' },
@@ -57,8 +57,9 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 gap-4">
                 {/* LEFT: Logo & Meny */}
                 <div className="flex items-center gap-4">
-                    <Link to="/" className="text-xl font-bold tracking-wide">
+                    <Link to="/" className="text-xl font-bold tracking-wide flex">
                         ELECTRIC
+                        <FaEdgeLegacy className="text-2xl text-green-700 font-bold"/>
                     </Link>
                     <button
                         aria-label="Öppna meny"

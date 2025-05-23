@@ -1,4 +1,5 @@
 import {Link, useNavigate} from 'react-router-dom';
+import {FaEdgeLegacy} from 'react-icons/fa';
 import {useState} from 'react';
 
 const users = [
@@ -13,7 +14,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    const [selected, setSelected] = useState('privat');
+    // const [selected, setSelected] = useState('privat');
 
     const navigate = useNavigate();
 
@@ -34,38 +35,27 @@ const Login = () => {
         <div className="pt-20 px-4 max-w-md mx-auto space-y-4 ">
             <Link
                 to="/"
-                className="text-xl font-bold tracking-wide text-blue-600 flex justify-center"
+                className="text-xl font-bold tracking-wide flex justify-center"
             >
                 ELECTRIC
+                <FaEdgeLegacy className="text-2xl text-green-700 font-bold"/>
             </Link>
-            <h4 className="text-xl font-semibold flex justify-center">INLOGGNING</h4>
+            <h4 className="font-semibold flex justify-center">INLOGGNING</h4>
 
             <div className="flex justify-center">
-            <div className=" gap-2 text-sm font-medium bg-gray-300 p-2 rounded-full max-w-[12rem]">
-                <button
-                    onClick={() => setSelected('privat')}
-                    className={`py-1 px-4 rounded-full transition-colors duration-200 ${
-                        selected === 'privat'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-600'
-                    }`}
-                >
-                    Privat
-                </button>
-                <button
-                    onClick={() => {
-                        setSelected('foretag');
-                        navigate('/foretag'); // Redirect to Företag page
-                    }}
-                    className={`py-1 px-4 rounded-full transition-colors duration-200 ${
-                        selected === 'foretag'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-white text-gray-600'
-                    }`}
-                >
-                    Företag
-                </button>
-            </div>
+                <div className="flex gap-2 text-sm font-medium bg-gray-300 p-2 rounded-full max-w-[12rem]">
+                    <button
+                        className="py-2 px-6 rounded-full bg-white text-black"
+                    >
+                        Privat
+                    </button>
+                    <button
+                        onClick={() => navigate('/foretag')}
+                        className="py-1 px-4 rounded-full transition-colors"
+                    >
+                        Företag
+                    </button>
+                </div>
             </div>
             <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm font-medium">
