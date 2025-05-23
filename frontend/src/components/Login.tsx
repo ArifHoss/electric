@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {useState} from 'react';
 
 const users = [
     {
@@ -40,7 +40,8 @@ const Login = () => {
             </Link>
             <h4 className="text-xl font-semibold flex justify-center">INLOGGNING</h4>
 
-            <div className="flex justify-center gap-4 text-sm font-medium bg-gray-300 p-1 rounded-full">
+            <div className="flex justify-center">
+            <div className=" gap-2 text-sm font-medium bg-gray-300 p-2 rounded-full max-w-[12rem]">
                 <button
                     onClick={() => setSelected('privat')}
                     className={`py-1 px-4 rounded-full transition-colors duration-200 ${
@@ -65,7 +66,7 @@ const Login = () => {
                     Företag
                 </button>
             </div>
-
+            </div>
             <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm font-medium">
                     E-post
