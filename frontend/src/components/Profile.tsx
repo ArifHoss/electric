@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useAuth} from "./AuthContext.tsx";
 
 const tabs = [
     'MIN SIDA',
@@ -12,11 +13,12 @@ const tabs = [
 
 function Profile() {
     const navigate = useNavigate();
-    const userName = localStorage.getItem('userName');
     const [activeTab, setActiveTab] = useState('MIN SIDA');
+    const { userName, logout } = useAuth();
 
     const handleLogout = () => {
         localStorage.removeItem('userName');
+        logout();
         navigate('/login');
     };
 

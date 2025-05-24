@@ -1,6 +1,7 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {FaEdgeLegacy} from 'react-icons/fa';
 import {useState} from 'react';
+import {useAuth} from "./AuthContext.tsx";
 
 const users = [
     {
@@ -14,7 +15,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-     // const [clicked, setClicked] = useState(false);
+    const { login } = useAuth();
 
     const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ const Login = () => {
         );
 
         if (matchedUser) {
-            localStorage.setItem('userName', matchedUser.name);
+            login(matchedUser.name);
             navigate('/'); // Go to homepage or dashboard
         } else {
             setErrorMsg('Fel e-post eller lösenord.');

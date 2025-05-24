@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react'; // ← add useRef and useEf
 import { Link } from 'react-router-dom';
 import { FiMenu, FiUser, FiShoppingCart, FiMapPin } from 'react-icons/fi';
 import { FaTimes ,FaEdgeLegacy} from 'react-icons/fa';
+import {useAuth} from "./AuthContext.tsx";
 
 const menuItems = [
     { label: 'Datorer & Kontor', to: '' },
@@ -26,6 +27,7 @@ const menuItems = [
 const Navbar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const drawerRef = useRef<HTMLDivElement>(null);
+    const { userName } = useAuth();
 
     // 2. Close on outside click
     useEffect(() => {
@@ -105,7 +107,7 @@ const Navbar = () => {
                         <FiMapPin className="text-xl" />
                         Hitta butik
                     </Link>
-                    {localStorage.getItem('userName') ? (
+                    {userName ? (
                         <Link
                             to="/profile"
                             className="flex flex-col items-center hover:text-blue-400"
