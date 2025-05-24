@@ -109,7 +109,7 @@ const Navbar = () => {
                     </Link>
                     {userName ? (
                         <Link
-                            to="/profile"
+                            to="/minsida"
                             className="flex flex-col items-center hover:text-blue-400"
                         >
                             <FiUser className="text-xl" />

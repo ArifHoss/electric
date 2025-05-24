@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import Navbar from './components/Navbar.tsx';
 import Home from './components/Home';
-import Profile from './components/Profile';
+import MinSida from './components/MinSida.tsx';
 import Login from './components/Login';
 import Cart from './components/Cart.tsx'
 import Location from "./components/Location.tsx";
@@ -30,7 +30,7 @@ function App() {
                 <Route element={<Layout />}>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/minsida" element={<MinSida />} />
                     <Route path="/cart" element={<Cart/>}/>
                     <Route path="/location" element={<Location/>}/>
                     <Route path="/register" element={<Register/>}/>
