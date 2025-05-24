@@ -14,7 +14,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    // const [selected, setSelected] = useState('privat');
+     // const [clicked, setClicked] = useState(false);
 
     const navigate = useNavigate();
 
@@ -91,7 +91,12 @@ const Login = () => {
 
                 <button
                     onClick={handleLogin}
-                    className="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+                    disabled={!email || !password}
+                    className={`mt-4 w-full py-2 rounded transition-colors ${
+                        email && password
+                            ? 'bg-blue-600 text-white hover:bg-blue-700'
+                            : 'bg-gray-400 text-white cursor-not-allowed'
+                    }`}
                 >
                     Logga in
                 </button>

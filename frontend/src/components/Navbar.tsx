@@ -105,13 +105,23 @@ const Navbar = () => {
                         <FiMapPin className="text-xl" />
                         Hitta butik
                     </Link>
-                    <Link
-                        to="/login"
-                        className="flex flex-col items-center hover:text-blue-400"
-                    >
-                        <FiUser className="text-xl" />
-                        Login
-                    </Link>
+                    {localStorage.getItem('userName') ? (
+                        <Link
+                            to="/profile"
+                            className="flex flex-col items-center hover:text-blue-400"
+                        >
+                            <FiUser className="text-xl" />
+                            Min sida
+                        </Link>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className="flex flex-col items-center hover:text-blue-400"
+                        >
+                            <FiUser className="text-xl" />
+                            Login
+                        </Link>
+                    )}
                     <Link
                         to="/cart"
                         className="flex flex-col items-center hover:text-blue-400"
