@@ -29,6 +29,14 @@ const Navbar = () => {
     const drawerRef = useRef<HTMLDivElement>(null);
     const { userName } = useAuth();
 
+    const initials = userName
+        ? userName
+        .split(' ')
+        .map(name => name[0])
+        .join('')
+        .toUpperCase()
+        : ' ';
+
     // 2. Close on outside click
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -112,7 +120,9 @@ const Navbar = () => {
                             to="/minsida"
                             className="flex flex-col items-center hover:text-blue-400"
                         >
-                            <FiUser className="text-xl" />
+                            <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold">
+                                {initials}
+                            </div>
                             Min sida
                         </Link>
                     ) : (
@@ -124,6 +134,7 @@ const Navbar = () => {
                             Login
                         </Link>
                     )}
+
                     <Link
                         to="/cart"
                         className="flex flex-col items-center hover:text-blue-400"

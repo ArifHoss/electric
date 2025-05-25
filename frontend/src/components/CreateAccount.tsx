@@ -29,6 +29,8 @@ const CreateAccount = () => {
     const [birthYear, setBirthYear] = useState('');
     const [birthMonth, setBirthMonth] = useState('');
     const [birthDay, setBirthDay] = useState('');
+
+    const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
     const {login} = useAuth();
 
@@ -201,9 +203,16 @@ const CreateAccount = () => {
             console.log('Server response: ', response.data);
             login(`${firstName} ${lastName}`);
             navigate('/');
-        } catch (error) {
-            console.error('Något gick fel vid användare:', error)
-            alert('Kunde inte spara användare!')
+            setErrorMsg('');
+        } catch (error: any) {
+            console.error('Något gick fel vid användare:', error);
+
+            // Check for custom error from backend
+            if (axios.isAxiosError(error) && error.response?.data?.error) {
+                setErrorMsg(error.response.data.error); // <-- show backend error like "Användare med denna e-post finns redan"
+            } else {
+                setErrorMsg('Kunde inte spara användare!');
+            }
         }
 
         // Clear fields
@@ -218,6 +227,7 @@ const CreateAccount = () => {
         setBirthYear('');
         setBirthMonth('');
         setBirthDay('');
+
     };
 
     return (
@@ -355,7 +365,7 @@ const CreateAccount = () => {
 
                     <hr className="my-6 border-t border-gray-300"/>
 
-                    <div>
+                    <div className="flex flex-col gap-4">
                         <input
                             type="email"
                             placeholder="johndoe@gmail.com"
@@ -421,9 +431,12 @@ const CreateAccount = () => {
                     </div>
 
                     <div>
+                        {errorMsg && (
+                            <p className="text-red-600 font-medium">{errorMsg}</p>
+                        )}
                         <button
                             type="submit"
-                            className="w-full bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800"
+                            className="w-full bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800 mb-8"
                         >
                             Skapa konto
                         </button>
