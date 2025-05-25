@@ -105,6 +105,10 @@ const Login = () => {
                     <p>Har ni inget konto? </p>
                     <Link to='/register' className="underline">Registera</Link>
                 </div>
+                <div className="flex justify-center">
+                    <p>Har ni inget konto? </p>
+                    <Link to='/createAccount' className="underline">Skapa konto</Link>
+                </div>
             </div>
         </div>
     );
