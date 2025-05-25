@@ -194,13 +194,10 @@ const CreateAccount = () => {
             birthDate,
         };
 
-        //
-        // setUsers(prev => [...prev, newUser]);
-        // alert("Användare sparad i state!");
 
         try {
             const response = await axios.post('http://localhost:3001/users', newUser);
-            alert('Användare sparad!')
+            // alert('Användare sparad!')
             console.log('Server response: ', response.data);
             login(`${firstName} ${lastName}`);
             navigate('/');
