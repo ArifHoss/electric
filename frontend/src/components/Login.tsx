@@ -4,14 +4,6 @@ import {useState} from 'react';
 import {useAuth} from "./AuthContext.tsx";
 import axios from "axios";
 
-// const users = [
-//     {
-//         name: 'Arif Hossain',
-//         email: 'email@gmail.com',
-//         password: '12345' // Store as string for input comparison
-//     }
-// ];
-
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
