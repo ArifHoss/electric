@@ -12,13 +12,14 @@ import Cart from './components/Cart.tsx'
 import Location from "./components/Location.tsx";
 import Register from "./components/Register.tsx";
 import LoginCompany from "./components/LoginCompany.tsx";
+import CreateAccount from "./components/CreateAccount.tsx";
 
 // Layout with Navbar + page content
 const Layout = () => (
     <>
-        <Navbar />
+        <Navbar/>
         <main className="pt-20 px-4">
-            <Outlet />
+            <Outlet/>
         </main>
     </>
 );
@@ -27,14 +28,15 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route element={<Layout />}>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/minsida" element={<MinSida />} />
+                <Route element={<Layout/>}>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/minsida" element={<MinSida/>}/>
                     <Route path="/cart" element={<Cart/>}/>
                     <Route path="/location" element={<Location/>}/>
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/foretag" element={<LoginCompany/>}/>
+                    <Route path="/createAccount" element={<CreateAccount/>}/>
                 </Route>
             </Routes>
         </Router>
