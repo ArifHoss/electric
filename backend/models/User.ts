@@ -9,27 +9,49 @@ const User = sequelize.define(
             autoIncrement: true,
             primaryKey: true,
         },
-        name: {
+        firstName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [3, 100], // Ensure name is at least 3 characters
+                len: [1, 50],
+            },
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [1, 50],
             },
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true, // Enforce uniqueness
+            unique: true,
             validate: {
-                isEmail: true, // Validate email format
+                isEmail: true,
             },
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [6, 100], // Ensure password is at least 6 characters
+                len: [6, 100],
             },
+        },
+        phone: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                len: [6, 20],
+            },
+        },
+        country: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        birthDate: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
         },
     },
     {

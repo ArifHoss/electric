@@ -2,14 +2,15 @@ import {Link, useNavigate} from 'react-router-dom';
 import {FaEdgeLegacy} from 'react-icons/fa';
 import {useState} from 'react';
 import {useAuth} from "./AuthContext.tsx";
+import axios from "axios";
 
-const users = [
-    {
-        name: 'Arif Hossain',
-        email: 'email@gmail.com',
-        password: '12345' // Store as string for input comparison
-    }
-];
+// const users = [
+//     {
+//         name: 'Arif Hossain',
+//         email: 'email@gmail.com',
+//         password: '12345' // Store as string for input comparison
+//     }
+// ];
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -19,15 +20,18 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        const matchedUser = users.find(
-            (user) => user.email === email && user.password === password
-        );
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('http://localhost:3001/users/login', {
+                email,
+                password
+            });
 
-        if (matchedUser) {
-            login(matchedUser.name);
-            navigate('/'); // Go to homepage or dashboard
-        } else {
+            const { name } = response.data;
+            login(name);
+            navigate('/');
+        } catch (error) {
+            console.error('Login failed:', error);
             setErrorMsg('Fel e-post eller lösenord.');
         }
     };

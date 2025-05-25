@@ -1,8 +1,10 @@
 import {FaEdgeLegacy} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {FiArrowUpRight} from "react-icons/fi";
 import {BsQuestionCircleFill} from "react-icons/bs";
 import {type FormEvent, useState} from "react";
+import axios from 'axios';
+import {useAuth} from "./AuthContext"; // adjust path as needed
 
 type NewUser = {
     firstName: string;
@@ -16,7 +18,6 @@ type NewUser = {
 
 const CreateAccount = () => {
 
-    const [users, setUsers] = useState<NewUser[]>([]);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('');
@@ -28,6 +29,8 @@ const CreateAccount = () => {
     const [birthYear, setBirthYear] = useState('');
     const [birthMonth, setBirthMonth] = useState('');
     const [birthDay, setBirthDay] = useState('');
+    const navigate = useNavigate();
+    const {login} = useAuth();
 
     const countries = [
         "Afghanistan", "Albanien", "Algeriet", "Andorra", "Angola", "Antigua och Barbuda", "Argentina", "Armenien", "Australien", "Österrike",
@@ -163,7 +166,7 @@ const CreateAccount = () => {
         {name: "Azerbajdzjan", code: "+994 (Azerbajdzjan)"},
     ];
 
-    const handleButtonClick = (e: FormEvent<HTMLFormElement>) => {
+    const handleButtonClick = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         // Validate all fields
@@ -191,8 +194,20 @@ const CreateAccount = () => {
             birthDate,
         };
 
-        setUsers(prev => [...prev, newUser]);
-        alert("Användare sparad i state!");
+        //
+        // setUsers(prev => [...prev, newUser]);
+        // alert("Användare sparad i state!");
+
+        try {
+            const response = await axios.post('http://localhost:3001/users', newUser);
+            alert('Användare sparad!')
+            console.log('Server response: ', response.data);
+            login(`${firstName} ${lastName}`);
+            navigate('/');
+        } catch (error) {
+            console.error('Något gick fel vid användare:', error)
+            alert('Kunde inte spara användare!')
+        }
 
         // Clear fields
         setFirstName('');
