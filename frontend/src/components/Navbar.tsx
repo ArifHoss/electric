@@ -112,7 +112,7 @@ const Navbar = () => {
                     </div>
 
                     {/* CENTER: Search bar (only on md+) */}
-                    <div className="hidden md:flex flex-grow max-w-md relative">
+                    <div className="hidden md:flex flex-1 relative">
                         <input
                             type="text"
                             placeholder="Sök produkter..."
@@ -159,7 +159,7 @@ const Navbar = () => {
                     </div>
 
                     {/* DESKTOP: icons with text */}
-                    <div className="hidden md:flex ml-auto">
+                    <div className="hidden md:flex justify-end">
                         <NavIcons/>
                     </div>
                 </div>
