@@ -14,6 +14,22 @@ import Register from "./components/Register.tsx";
 import LoginCompany from "./components/LoginCompany.tsx";
 import CreateAccount from "./components/CreateAccount.tsx";
 import Profile from "./components/Profile.tsx";
+import Computer from "./products/Computer.tsx";
+import Phone from "./products/Phone.tsx";
+import Careers from "./products/Careers.tsx";
+import Company from "./products/Company.tsx";
+import ComputerAccessories from "./products/ComputerAccessories.tsx";
+import Gaming from "./products/Gaming.tsx";
+import HomeGarden from "./products/HomeGarden.tsx";
+import Kampanjer from "./products/Kampanjer.tsx";
+import KitchenWashing from "./products/KitchenWashing.tsx";
+import KundKlubb from "./products/Kundklubb.tsx";
+import LEGO from "./products/LEGO.tsx";
+import PersonalCare from "./products/PersonalCare.tsx";
+import ServicesAccessories from "./products/ServicesAccessories.tsx";
+import Sports from "./products/Sports.tsx";
+import TvSoundSmartHome from "./products/TvSoundSmartHome.tsx";
+import Vitavaror from "./products/Vitavaror.tsx";
 
 // Layout with Navbar + page content
 const Layout = () => (
@@ -39,6 +55,24 @@ function App() {
                     <Route path="/foretag" element={<LoginCompany/>}/>
                     <Route path="/createAccount" element={<CreateAccount/>}/>
                     <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/career" element={<Careers/>}/>
+                    <Route path="/company" element={<Company/>}/>
+                    <Route path="/dator" element={<Computer/>}/>
+                    <Route path="/computeraccessories" element={<ComputerAccessories/>}/>
+                    <Route path="/gaming" element={<Gaming/>}/>
+                    <Route path="/homegarden" element={<HomeGarden/>}/>
+                    <Route path="/kampanjer" element={<Kampanjer/>}/>
+                    <Route path="/kitchenwashing" element={<KitchenWashing/>}/>
+                    <Route path="/kundklubb" element={<KundKlubb/>}/>
+                    <Route path="/lego" element={<LEGO/>}/>
+                    <Route path="/outlet" element={<Outlet/>}/>
+                    <Route path="/personalcare" element={<PersonalCare/>}/>
+                    <Route path="/phone" element={<Phone/>}/>
+                    <Route path="/service" element={<ServicesAccessories/>}/>
+                    <Route path="/sport" element={<Sports/>}/>
+                    <Route path="/tvsound" element={<TvSoundSmartHome/>}/>
+                    <Route path="/vitavaror" element={<Vitavaror/>}/>
+
 
                 </Route>
             </Routes>

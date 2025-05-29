@@ -5,23 +5,23 @@ import {FaTimes, FaEdgeLegacy} from 'react-icons/fa';
 import {useAuth} from "./AuthContext.tsx";
 
 const menuItems = [
-    {label: 'Datorer & Kontor', to: ''},
-    {label: 'Mobiler, Tablets & Smartklockor', to: ''},
-    {label: 'TV, Ljud & Smart Hem', to: ''},
-    {label: 'Gaming', to: ''},
-    {label: 'Datorkomponenter', to: ''},
-    {label: 'Epoq Kök & Tvättstuga', to: ''},
-    {label: 'Vitvaror', to: ''},
-    {label: 'Hem, Hushåll & Trädgård', to: ''},
-    {label: 'Personvård, Hälsa & Skönhet', to: ''},
-    {label: 'Sport & Fritid', to: ''},
+    {label: 'Datorer & Kontor', to: '/dator'},
+    {label: 'Mobiler, Tablets & Smartklockor', to: '/phone'},
+    {label: 'TV, Ljud & Smart Hem', to: '/tvsound'},
+    {label: 'Gaming', to: '/gaming'},
+    {label: 'Datorkomponenter', to: '/computeraccessories'},
+    {label: 'Epoq Kök & Tvättstuga', to: '/kitchenwashing'},
+    {label: 'Vitvaror', to: '/vitavaror'},
+    {label: 'Hem, Hushåll & Trädgård', to: '/homegarden'},
+    {label: 'Personvård, Hälsa & Skönhet', to: '/personalcare'},
+    {label: 'Sport & Fritid', to: '/sport'},
     {label: 'LEGO', to: '/lego'},
-    {label: 'Tjänster & Tillbehör', to: ''},
-    {label: 'Elgiganten Företag', to: ''},
-    {label: 'Outlet', to: ''},
-    {label: 'Kampanjer', to: ''},
-    {label: 'Elgiganten Kundklubb', to: ''},
-    {label: 'Jobba hos oss', to: ''}
+    {label: 'Tjänster & Tillbehör', to: '/service'},
+    {label: 'Elgiganten Företag', to: '/company'},
+    {label: 'Outlet', to: '/outlet'},
+    {label: 'Kampanjer', to: '/kampanjer'},
+    {label: 'Elgiganten Kundklubb', to: '/kundklubb'},
+    {label: 'Jobba hos oss', to: '/career'}
 ];
 
 const Navbar = () => {
