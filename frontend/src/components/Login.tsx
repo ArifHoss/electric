@@ -9,6 +9,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
     const {login} = useAuth();
 
     const navigate = useNavigate();
@@ -57,7 +59,10 @@ const Login = () => {
                     </button>
                 </div>
             </div>
-            <div className="space-y-2">
+            <form className="space-y-2" onSubmit={(e) =>{
+                e.preventDefault();
+                handleLogin();
+            }}>
                 <label htmlFor="email" className="block text-sm font-medium">
                     E-post
                 </label>
@@ -65,9 +70,18 @@ const Login = () => {
                     type="email"
                     placeholder="johndoe@gmail.com"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setEmail(value);
+                        if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value)) {
+                            setEmailError('Ogiltig e-postadress');
+                        } else {
+                            setEmailError('');
+                        }
+                    }}
                     className="w-full px-3 py-2 rounded border border-gray-300"
                 />
+                {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
 
                 <label htmlFor="password" className="block text-sm font-medium">
                     Lösenord
@@ -76,9 +90,18 @@ const Login = () => {
                     type="password"
                     placeholder="********"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setPassword(value);
+                        if (value.length < 6) {
+                            setPasswordError('Lösenordet måste vara minst 6 tecken');
+                        } else {
+                            setPasswordError('');
+                        }
+                    }}
                     className="w-full px-3 py-2 rounded border border-gray-300"
                 />
+                {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
 
                 <Link
                     to="/forget-pass"
@@ -90,7 +113,7 @@ const Login = () => {
                 {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
 
                 <button
-                    onClick={handleLogin}
+                    type="submit"
                     disabled={!email || !password}
                     className={`mt-4 w-full py-2 rounded transition-colors ${
                         email && password
@@ -108,7 +131,7 @@ const Login = () => {
                     <p>Har ni inget konto? </p>
                     <Link to='/createAccount' className="underline">Skapa konto</Link>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };
