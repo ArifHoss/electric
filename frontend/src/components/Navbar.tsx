@@ -17,7 +17,7 @@ const menuItems = [
     {label: 'Sport & Fritid', to: '/sport'},
     {label: 'LEGO', to: '/lego'},
     {label: 'Tjänster & Tillbehör', to: '/service'},
-    {label: 'Elgiganten Företag', to: '/company'},
+    {label: 'Elgiganten Företag', to: '/dator'},
     {label: 'Outlet', to: '/outlet'},
     {label: 'Kampanjer', to: '/kampanjer'},
     {label: 'Elgiganten Kundklubb', to: '/kundklubb'},
@@ -26,8 +26,11 @@ const menuItems = [
 
 const Navbar = () => {
     //Search state
+    // const [searchText, setSearchText] = useState('');
+    // const [suggestions, setSuggestions] = useState(menuItems);
     const [searchText, setSearchText] = useState('');
-    const [suggestions, setSuggestions] = useState(menuItems);
+    const [suggestions, setSuggestions] = useState<typeof menuItems>([]);
+    const [highlightIndex, setHighlightIndex] = useState(-1);
 
     const [drawerOpen, setDrawerOpen] = useState(false);
     const drawerRef = useRef<HTMLDivElement>(null);
@@ -122,6 +125,23 @@ const Navbar = () => {
                             type="text"
                             placeholder="Sök produkter..."
                             value={searchText}
+                            onKeyDown={(e) => {
+                                if (e.key === 'ArrowDown') {
+                                    e.preventDefault();
+                                    setHighlightIndex((prev) => (prev + 1) % suggestions.length);
+                                } else if (e.key === 'ArrowUp') {
+                                    e.preventDefault();
+                                    setHighlightIndex((prev) => (prev - 1 + suggestions.length) % suggestions.length);
+                                } else if (e.key === 'Enter') {
+                                    const selected = suggestions[highlightIndex] || suggestions[0];
+                                    if (selected) {
+                                        setSearchText('');
+                                        setSuggestions([]);
+                                        setHighlightIndex(-1);
+                                        if (selected.to) window.location.href = selected.to;
+                                    }
+                                }
+                            }}
                             onChange={(e)=>{
                                 const value = e.target.value;
                                 setSearchText(value);
@@ -135,12 +155,18 @@ const Navbar = () => {
                         />
                         {searchText && suggestions.length > 0 && (
                             <div className="absolute top-full left-0 w-full bg-white text-black shadow-md rounded-md z-50 mt-1">
-                                {suggestions.map(({label, to}, idx) => (
+                                {suggestions.map(({ label, to }, idx) => (
                                     <Link
                                         key={idx}
                                         to={to || '#'}
-                                        onClick={() => setSearchText('')}
-                                        className="block px-4 py-2 hover:bg-blue-100"
+                                        onClick={() => {
+                                            setSearchText('');
+                                            setSuggestions([]);
+                                            setHighlightIndex(-1);
+                                        }}
+                                        className={`block px-4 py-2 ${
+                                            idx === highlightIndex ? 'bg-blue-100 font-semibold' : 'hover:bg-blue-50'
+                                        }`}
                                     >
                                         {label}
                                     </Link>
@@ -230,8 +256,32 @@ const Navbar = () => {
                     <input
                         type="text"
                         placeholder="Sök produkter..."
+                        value={searchText}
+                        onChange={(e)=>{
+                            const value = e.target.value;
+                            setSearchText(value);
+                            setSuggestions(
+                                menuItems.filter((item)=>
+                                    item.label.toLowerCase().includes(value.toLowerCase())
+                                )
+                            );
+                        }}
                         className="w-full px-4 py-2 pl-10 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
+                    {searchText && suggestions.length > 0 && (
+                        <div className="absolute top-full left-0 w-full bg-white text-black shadow-md rounded-md z-50 mt-1">
+                            {suggestions.map(({label, to}, idx) => (
+                                <Link
+                                    key={idx}
+                                    to={to || '#'}
+                                    onClick={() => setSearchText('')}
+                                    className="block px-4 py-2 hover:bg-blue-100"
+                                >
+                                    {label}
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                     <svg
                         className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                         xmlns="http://www.w3.org/2000/svg"

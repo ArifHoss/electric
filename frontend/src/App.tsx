@@ -72,8 +72,6 @@ function App() {
                     <Route path="/sport" element={<Sports/>}/>
                     <Route path="/tvsound" element={<TvSoundSmartHome/>}/>
                     <Route path="/vitavaror" element={<Vitavaror/>}/>
-
-
                 </Route>
             </Routes>
         </Router>
