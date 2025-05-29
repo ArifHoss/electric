@@ -25,6 +25,10 @@ const menuItems = [
 ];
 
 const Navbar = () => {
+    //Search state
+    const [searchText, setSearchText] = useState('');
+    const [suggestions, setSuggestions] = useState(menuItems);
+
     const [drawerOpen, setDrawerOpen] = useState(false);
     const drawerRef = useRef<HTMLDivElement>(null);
     const {user} = useAuth();
@@ -117,8 +121,32 @@ const Navbar = () => {
                         <input
                             type="text"
                             placeholder="Sök produkter..."
+                            value={searchText}
+                            onChange={(e)=>{
+                                const value = e.target.value;
+                                setSearchText(value);
+                                setSuggestions(
+                                    menuItems.filter((item)=>
+                                    item.label.toLowerCase().includes(value.toLowerCase())
+                                    )
+                                );
+                            }}
                             className="w-full px-4 py-2 pl-10 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
+                        {searchText && suggestions.length > 0 && (
+                            <div className="absolute top-full left-0 w-full bg-white text-black shadow-md rounded-md z-50 mt-1">
+                                {suggestions.map(({label, to}, idx) => (
+                                    <Link
+                                        key={idx}
+                                        to={to || '#'}
+                                        onClick={() => setSearchText('')}
+                                        className="block px-4 py-2 hover:bg-blue-100"
+                                    >
+                                        {label}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
                         <svg
                             className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                             xmlns="http://www.w3.org/2000/svg"
