@@ -1,15 +1,18 @@
 import { useAuth } from "./AuthContext.tsx";
 import { IoIosHeart } from "react-icons/io";
- import {useNavigate} from "react-router-dom";
+ // import {useNavigate} from "react-router-dom";
+type Props = {
+    setActiveTab: (tab: string) => void;
+};
 
-const MyPage = () => {
+const MyPage = ({setActiveTab}:Props) => {
     const { user } = useAuth();
-     const navigate = useNavigate();
+     // const navigate = useNavigate();
 
     if (!user) return <p>Laddar användardata...</p>;
 
     const handleUpdateClick = () => {
-        navigate('/minsida'); // or wherever Profile is rendered as a tab
+        setActiveTab('PROFIL')
     };
 
     return (

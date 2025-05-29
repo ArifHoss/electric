@@ -31,7 +31,7 @@ function MinSida() {
     const renderTabContent = () => {
         switch (activeTab) {
             case 'MIN SIDA':
-                return <MyPage/>;
+                return <MyPage setActiveTab={setActiveTab}/>;
             case 'PROFIL':
                 return <Profile/>;
             case 'ORDERHISTORIK':
@@ -43,7 +43,7 @@ function MinSida() {
             case 'KUNDKLUBB':
                 return <KundKlubb/>;
             default:
-                return <MyPage/>;
+                return <MyPage setActiveTab={setActiveTab}/>;
         }
     };
 
