@@ -68,7 +68,7 @@ const Navbar = () => {
             {user ? (
                 <Link to="/minsida" className="flex flex-col items-center hover:text-blue-400">
                     <div
-                        className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold">
+                        className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold">
                         {initials}
                     </div>
                     <span className="hidden md:inline text-xs">Min sida</span>
