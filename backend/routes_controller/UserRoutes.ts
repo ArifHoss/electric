@@ -27,6 +27,21 @@ router.get('/:id', async (req: Request, res: Response) => {
     }
 });
 
+
+// GET one user by email
+router.get('/email/:email', async (req: Request, res: Response) => {
+    try {
+        const user = await User.findOne({ where: { email: req.params.email } });
+        if (!user) {
+            res.status(404).json({ error: 'User not found' });
+            return;
+        }
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch user by email' });
+    }
+});
+
 // CREATE new user
 router.post('/', async (req: Request, res: Response) => {
     try {

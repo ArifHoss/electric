@@ -27,15 +27,11 @@ const menuItems = [
 const Navbar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const drawerRef = useRef<HTMLDivElement>(null);
-    const {userName} = useAuth();
+    const {user} = useAuth();
 
-    const initials = userName
-        ? userName
-            .split(' ')
-            .map(name => name[0])
-            .join('')
-            .toUpperCase()
-        : ' ';
+    const initials = user
+        ? `${user.firstName[0] ?? ''}${user.lastName[0] ?? ''}`.toUpperCase()
+        : '';
 
     // 2. Close on outside click
     useEffect(() => {
@@ -69,7 +65,7 @@ const Navbar = () => {
                 <FiMapPin className="text-xl"/>
                 <span className="hidden md:inline text-xs">Butik</span>
             </Link>
-            {userName ? (
+            {user ? (
                 <Link to="/minsida" className="flex flex-col items-center hover:text-blue-400">
                     <div
                         className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold">
@@ -145,7 +141,7 @@ const Navbar = () => {
                         <Link to="/location">
                             <FiMapPin className="text-xl hover:text-blue-400"/>
                         </Link>
-                        {userName ? (
+                        {user ? (
                             <Link to="/minsida">
                                 <div
                                     className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold">

@@ -13,6 +13,7 @@ import Location from "./components/Location.tsx";
 import Register from "./components/Register.tsx";
 import LoginCompany from "./components/LoginCompany.tsx";
 import CreateAccount from "./components/CreateAccount.tsx";
+import Profile from "./components/Profile.tsx";
 
 // Layout with Navbar + page content
 const Layout = () => (
@@ -37,6 +38,8 @@ function App() {
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/foretag" element={<LoginCompany/>}/>
                     <Route path="/createAccount" element={<CreateAccount/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+
                 </Route>
             </Routes>
         </Router>

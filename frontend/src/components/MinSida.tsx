@@ -20,10 +20,10 @@ const tabs = [
 function MinSida() {
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState('MIN SIDA');
-    const { userName, logout } = useAuth();
+    const { user, logout } = useAuth();
 
     const handleLogout = () => {
-        localStorage.removeItem('userName');
+        localStorage.removeItem('user');
         logout();
         navigate('/login');
     };
@@ -50,7 +50,9 @@ function MinSida() {
     return (
         <div className="max-w-4xl mx-auto px-4 py-10 space-y-6">
             <div className="flex justify-between items-center">
-                <h1 className="text-2xl font-semibold">Hej, {userName} 👋</h1>
+                <h1 className="text-2xl font-semibold">
+                    {user ? `Hej, ${user.firstName} ${user.lastName} 👋` : 'Välkommen 👋'}
+                </h1>
                 <button
                     onClick={handleLogout}
                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
@@ -78,7 +80,7 @@ function MinSida() {
 
             {/* Dynamic Content */}
             <div className="mt-4">
-                <h2 className="text-xl font-medium">{activeTab}</h2>
+                {/*<h2 className="text-xl font-medium">{activeTab}</h2>*/}
                 <div className="mt-2 text-gray-600">{renderTabContent()}</div>
             </div>
         </div>

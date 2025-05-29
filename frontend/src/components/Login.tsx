@@ -2,29 +2,32 @@ import {Link, useNavigate} from 'react-router-dom';
 import {FaEdgeLegacy} from 'react-icons/fa';
 import {useState} from 'react';
 import {useAuth} from "./AuthContext.tsx";
+import {loginUser} from "../api/user.ts";
 import axios from "axios";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    const { login } = useAuth();
+    const {login} = useAuth();
 
     const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/users/login', {
-                email,
-                password
-            });
-
-            const { name } = response.data;
-            login(name);
+            await loginUser(email, password);
+            await login(email);
             navigate('/');
-        } catch (error) {
-            console.error('Login failed:', error);
-            setErrorMsg('Fel e-post eller lösenord.');
+        } catch (error: any) {
+            if (axios.isAxiosError(error)) {
+                if (error.response?.status === 401) {
+                    setErrorMsg('Fel e-post eller lösenord.');
+                } else {
+                    setErrorMsg('Något gick fel. Försök igen senare.');
+                }
+            } else {
+                setErrorMsg('Oväntat fel. Försök igen.');
+            }
         }
     };
 
