@@ -66,10 +66,11 @@ const Navbar = () => {
                 <span className="hidden md:inline text-xs">Butik</span>
             </Link>
             {user ? (
-                <Link to="/minsida" className="flex flex-col items-center hover:text-blue-400">
-                    <div
-                        className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold">
-                        {initials}
+                <Link to="/minsida" className="flex flex-col items-center hover:text-blue-400 text-sm">
+                    <div className="text-xl">
+                        <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold">
+                            {initials}
+                        </div>
                     </div>
                     <span className="hidden md:inline text-xs">Min sida</span>
                 </Link>
