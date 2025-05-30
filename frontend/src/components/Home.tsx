@@ -11,6 +11,7 @@ import { SiAirtable } from "react-icons/si";
 import { MdOutlet, MdOutlineMedicalServices } from "react-icons/md";
 import {Link} from "react-router-dom";
 import BannerCarousel from "../banner/BannerCarousel.tsx";
+import CategoryCards from "../banner/CategoryCards.tsx";
 
 const menuItems = [
     { label: "Outlet", to: "/outlet", icon: <MdOutlet /> },
@@ -43,16 +44,11 @@ const Home = () => {
                 ))}
             </header>
             {/* Promotional banner carousel */}
-            <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] px-0">
+            <section className="w-screen relative left-1/2 right-1/2 -mx-[50vw] px-0">
                 <BannerCarousel />
-            </div>
-
-            {/* Product image auto-slider */}
-            <section className="flex justify-center items-center py-10">
-                <article className="w-full max-w-[500px] h-auto">
-                 <h1>Product</h1>
-                </article>
             </section>
+            {/* Product categories - vertical scrollable */}
+                <CategoryCards/>
         </section>
     );
 };
