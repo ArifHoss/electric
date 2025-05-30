@@ -31,6 +31,7 @@ import TvSoundSmartHome from "./products/TvSoundSmartHome.tsx";
 import Vitavaror from "./products/Vitavaror.tsx";
 import OutletProduct from "./products/OutletProduct.tsx";
 import ProductDetail from "./product_details/ProductDetail.tsx";
+import Demo from "./products/Demo.tsx";
 
 // Layout with Navbar + page content
 const Layout = () => (
@@ -74,6 +75,7 @@ function App() {
                     <Route path="/tvsound" element={<TvSoundSmartHome/>}/>
                     <Route path="/vitavaror" element={<Vitavaror/>}/>
                     <Route path="/product/:id" element={<ProductDetail/>}/>
+                    <Route path="/demo" element={<Demo/>}/>
                 </Route>
             </Routes>
         </Router>
