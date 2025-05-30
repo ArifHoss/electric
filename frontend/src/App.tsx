@@ -1,8 +1,7 @@
 import {
     BrowserRouter as Router,
     Routes,
-    Route,
-    Outlet
+    Route, Outlet
 } from 'react-router-dom';
 import Navbar from './components/Navbar.tsx';
 import Home from './components/Home';
@@ -30,6 +29,8 @@ import ServicesAccessories from "./products/ServicesAccessories.tsx";
 import Sports from "./products/Sports.tsx";
 import TvSoundSmartHome from "./products/TvSoundSmartHome.tsx";
 import Vitavaror from "./products/Vitavaror.tsx";
+import OutletProduct from "./products/OutletProduct.tsx";
+import ProductDetail from "./product_details/ProductDetail.tsx";
 
 // Layout with Navbar + page content
 const Layout = () => (
@@ -65,13 +66,14 @@ function App() {
                     <Route path="/kitchenwashing" element={<KitchenWashing/>}/>
                     <Route path="/kundklubb" element={<KundKlubb/>}/>
                     <Route path="/lego" element={<LEGO/>}/>
-                    <Route path="/outlet" element={<Outlet/>}/>
+                    <Route path="/outlet" element={<OutletProduct/>}/>
                     <Route path="/personalcare" element={<PersonalCare/>}/>
                     <Route path="/phone" element={<Phone/>}/>
                     <Route path="/service" element={<ServicesAccessories/>}/>
                     <Route path="/sport" element={<Sports/>}/>
                     <Route path="/tvsound" element={<TvSoundSmartHome/>}/>
                     <Route path="/vitavaror" element={<Vitavaror/>}/>
+                    <Route path="/product/:id" element={<ProductDetail/>}/>
                 </Route>
             </Routes>
         </Router>
