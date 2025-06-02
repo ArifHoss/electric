@@ -20,7 +20,7 @@ const menuItems = [
 
 const productList = [
     {
-        image: "/tv1.png",
+        image: "/tv.jpg",
         title: "Samsung 65\" QLED 4K Smart-TV Q80C",
         reviews: 12,
         description: "Levande färger och fantastisk kontrast med Quantum Dot-teknologi.",
@@ -28,7 +28,7 @@ const productList = [
         to: "/product/201"
     },
     {
-        image: "/tv2.png",
+        image: "/tv.jpg",
         title: "LG OLED55C3 55\" 4K OLED evo Smart-TV",
         reviews: 31,
         description: "Perfekt svärta och oändlig kontrast för filmälskare.",
@@ -36,7 +36,7 @@ const productList = [
         to: "/product/202"
     },
     {
-        image: "/tv3.png",
+        image: "/tv.jpg",
         title: "Sony Bravia XR-75X90L 75\" LED 4K",
         reviews: 18,
         description: "Fängslande bild och ljud med Cognitive Processor XR.",
@@ -44,7 +44,7 @@ const productList = [
         to: "/product/203"
     },
     {
-        image: "/tv4.png",
+        image: "/tv.jpg",
         title: "Philips The One 58\" 4K LED-TV PUS8818",
         reviews: 5,
         description: "Ambilight för en mer uppslukande tittarupplevelse.",
@@ -52,7 +52,7 @@ const productList = [
         to: "/product/204"
     },
     {
-        image: "/tv5.png",
+        image: "/tv.jpg",
         title: "TCL 55C845 55\" Mini-LED 4K Smart-TV",
         reviews: 9,
         description: "Prisvärd Mini-LED med fantastiska färger och HDR.",
@@ -60,7 +60,7 @@ const productList = [
         to: "/product/205"
     },
     {
-        image: "/tv6.png",
+        image: "/tv.jpg",
         title: "Samsung The Frame 50\" QLED 4K",
         reviews: 22,
         description: "TV som ser ut som en tavla – perfekt för inredningen.",
@@ -68,7 +68,7 @@ const productList = [
         to: "/product/206"
     },
     {
-        image: "/tv7.png",
+        image: "/tv.jpg",
         title: "Sony A80L 65\" 4K OLED Smart-TV",
         reviews: 14,
         description: "Otrolig bildkvalitet och smidig Google TV-plattform.",
@@ -76,7 +76,7 @@ const productList = [
         to: "/product/207"
     },
     {
-        image: "/tv8.png",
+        image: "/tv.jpg",
         title: "Panasonic TX-55MZ800E 55\" 4K OLED-TV",
         reviews: 6,
         description: "Klar OLED-prestanda och Dolby Atmos-ljud.",
@@ -84,7 +84,7 @@ const productList = [
         to: "/product/208"
     },
     {
-        image: "/tv9.png",
+        image: "/tv.jpg",
         title: "Samsung 43\" Crystal UHD 4K AU7095",
         reviews: 19,
         description: "Smidig smart-TV med livlig 4K-upplevelse till bra pris.",
@@ -92,7 +92,7 @@ const productList = [
         to: "/product/209"
     },
     {
-        image: "/tv10.png",
+        image: "/tv.jpg",
         title: "Xiaomi Mi TV P1 55\" 4K LED Smart-TV",
         reviews: 8,
         description: "Prisvärd smart-TV med Android och Google Assistant.",
@@ -100,7 +100,7 @@ const productList = [
         to: "/product/210"
     },
     {
-        image: "/tv11.png",
+        image: "/tv.jpg",
         title: "Hisense U7KQ 65\" ULED 4K Smart-TV",
         reviews: 4,
         description: "Gamingvänlig TV med 120 Hz och HDR10+.",
@@ -114,7 +114,7 @@ const TvSoundSmartHome = () => {
         <section>
             <header className="px-6 py-8">
                <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">TV, LJUD OCH SMART HEM</h1>
-               <p className="text-gray-600 text-base md:text-lg max-w-2xl">Hos Elgiganten har vi det mesta inom ljud och bild och smart hem. I vårt utbud finner du bland annat TV och högtalare från populära varumärken till låga priser.</p>
+               <p className="text-gray-600 text-base md:text-lg max-w-2xl">Hos Electric har vi det mesta inom ljud och bild och smart hem. I vårt utbud finner du bland annat TV och högtalare från populära varumärken till låga priser.</p>
             </header>
             <section
                 className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-6 py-6">

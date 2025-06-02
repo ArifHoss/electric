@@ -17,7 +17,7 @@ const menuItems = [
 
 const productList = [
     {
-        image: "/gaming1.png",
+        image: "/playstation.png",
         title: "PlayStation 5 Digital Edition",
         reviews: 75,
         description: "Nästa generations spelupplevelse med blixtsnabb SSD och realistisk grafik.",
@@ -25,7 +25,7 @@ const productList = [
         to: "/product/301"
     },
     {
-        image: "/gaming2.png",
+        image: "/playstation.png",
         title: "Xbox Series X 1TB",
         reviews: 68,
         description: "Kraftfull spelprestanda i elegant svart design.",
@@ -33,7 +33,7 @@ const productList = [
         to: "/product/302"
     },
     {
-        image: "/gaming3.png",
+        image: "/playstation.png",
         title: "Nintendo Switch OLED",
         reviews: 90,
         description: "Flexibel konsol med förbättrad skärm och ljud.",
@@ -41,7 +41,7 @@ const productList = [
         to: "/product/303"
     },
     {
-        image: "/gaming4.png",
+        image: "/playstation.png",
         title: "Lenovo Legion T5 Gaming PC",
         reviews: 32,
         description: "Klar för intensiva spel med RTX-grafik och snabb lagring.",
@@ -49,7 +49,7 @@ const productList = [
         to: "/product/304"
     },
     {
-        image: "/gaming5.png",
+        image: "/playstation.png",
         title: "Logitech G PRO X Gaming Headset",
         reviews: 48,
         description: "Professionellt ljud med Blue VO!CE-teknologi.",
@@ -57,7 +57,7 @@ const productList = [
         to: "/product/305"
     },
     {
-        image: "/gaming6.png",
+        image: "/playstation.png",
         title: "Razer Viper Ultimate Wireless Mouse",
         reviews: 22,
         description: "Ultralätt trådlös gamingmus med snabba svarstider.",
@@ -65,7 +65,7 @@ const productList = [
         to: "/product/306"
     },
     {
-        image: "/gaming7.png",
+        image: "/playstation.png",
         title: "Corsair K70 RGB MK.2 Mechanical Keyboard",
         reviews: 19,
         description: "Responsiv mekanisk gaming med RGB-belysning.",
@@ -73,7 +73,7 @@ const productList = [
         to: "/product/307"
     },
     {
-        image: "/gaming8.png",
+        image: "/playstation.png",
         title: "Samsung Odyssey G7 32\" Gaming Monitor",
         reviews: 11,
         description: "Kurvad QHD-skärm med 240 Hz för en uppslukande upplevelse.",
@@ -81,7 +81,7 @@ const productList = [
         to: "/product/308"
     },
     {
-        image: "/gaming9.png",
+        image: "/playstation.png",
         title: "Secretlab TITAN Evo Gaming Chair",
         reviews: 7,
         description: "Ergonomisk komfort och premiumdesign för långa spelpass.",
@@ -89,7 +89,7 @@ const productList = [
         to: "/product/309"
     },
     {
-        image: "/gaming10.png",
+        image: "/playstation.png",
         title: "Meta Quest 2 VR-headset 128GB",
         reviews: 38,
         description: "Trådlös VR med otrolig frihet och prestanda.",
