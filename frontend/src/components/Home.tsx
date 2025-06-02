@@ -41,7 +41,7 @@ const Home = () => {
                         className="flex flex-col items-center min-w-[120px] max-w-[160px] snap-start text-center px-2"
                     >
                         <div className="text-4xl mb-2">{item.icon}</div>
-                        <p className="text-sm font-medium leading-snug break-words">{item.label}</p>
+                        <p className="text-sm font-medium leading-snug break-words">{item.label.toUpperCase()}</p>
                     </Link>
                 ))}
             </header>

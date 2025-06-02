@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
 const menuItems = [
-    {label: "Datorer", to: "/demo", image: "/computer-acc.png",},
+    {label: "Datorer", to: "/computercard", image: "/computer-acc.png",},
     {label: "Datorkomponenter", to: "/demo", image: "/componet.png"},
     {label: "Datortillbehör", to: "/demo", image: "/keyboard.png"},
     {label: "Skärmar & Tillbehör", to: "/demo", image: "/monitor.png"},
@@ -17,6 +17,7 @@ const menuItems = [
 ];
 const ComputerAndOfficeCard = () => {
     return (
+
         <section
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-6 py-6">
             {menuItems.map((item, idx) => (
