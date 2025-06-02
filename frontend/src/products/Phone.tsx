@@ -106,6 +106,14 @@ const Phone = () => {
 
     return (
         <section>
+            <header className="px-6 py-8">
+                <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">
+                    Mobiler, Tablets & Smartklockor
+                </h1>
+                <p className="text-gray-600 text-base md:text-lg max-w-2xl">
+                    Upptäck vårt stora utbud av mobiltelefoner, surfplattor och smartklockor – allt du behöver för ett uppkopplat liv!
+                </p>
+            </header>
             <section
                 className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-6 py-6">
                 {menuItems.map((item, idx) => (
