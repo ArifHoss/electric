@@ -13,7 +13,7 @@ import Register from "./components/Register.tsx";
 import LoginCompany from "./components/LoginCompany.tsx";
 import CreateAccount from "./components/CreateAccount.tsx";
 import Profile from "./components/Profile.tsx";
-import Computer from "./products/Computer.tsx";
+import ComputerAndOffice from "./products/ComputerAndOffice.tsx";
 import Phone from "./products/Phone.tsx";
 import Careers from "./products/Careers.tsx";
 import Company from "./products/Company.tsx";
@@ -59,7 +59,7 @@ function App() {
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/career" element={<Careers/>}/>
                     <Route path="/company" element={<Company/>}/>
-                    <Route path="/dator" element={<Computer/>}/>
+                    <Route path="/dator" element={<ComputerAndOffice/>}/>
                     <Route path="/computeraccessories" element={<ComputerAccessories/>}/>
                     <Route path="/gaming" element={<Gaming/>}/>
                     <Route path="/homegarden" element={<HomeGarden/>}/>
