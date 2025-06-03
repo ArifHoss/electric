@@ -4,66 +4,67 @@ import {
     IoIosArrowDropleft,
     IoIosArrowDropright
 } from "react-icons/io";
+import Footer from "../components/Footer.tsx";
 
 const sampleProducts = [
     {
         id: 1,
         title: "OUTLET – TV & Hemmabio",
-        category:"tv",
+        category: "tv",
         image: "/tv.png",
     },
     {
         id: 2,
         title: "OUTLET – Datorer & Kontor",
-        category:"computer",
+        category: "computer",
         image: "/tv.png",
     },
     {
         id: 3,
         title: "OUTLET – Mobiler & Tablets",
-        category:"phone",
+        category: "phone",
         image: "/tv.png",
     },
     {
         id: 4,
         title: "OUTLET – Smartklockor",
-        category:"watch",
+        category: "watch",
         image: "/tv.png",
     },
     {
         id: 5,
         title: "OUTLET – Vitvaror",
-        category:"vitvaror",
+        category: "vitvaror",
         image: "/tv.png",
     },
     {
         id: 6,
         title: "OUTLET – Gaming",
-        category:"game",
+        category: "game",
         image: "/tv.png",
     },
     {
         id: 7,
         title: "OUTLET – Ljud & Högtalare",
-        category:"sound",
+        category: "sound",
         image: "/tv.png",
     },
     {
         id: 8,
         title: "OUTLET – Skönhet & Hälsa",
-        category:"helth",
+        category: "helth",
         image: "/tv.png",
     },
     {
         id: 9,
         title: "OUTLET – Sport & Fritid",
-        category:"sports",
+        category: "sports",
         image: "/tv.png",
     },
     {
         id: 10,
         title: "OUTLET – Trädgård",
-        category:"garden",
+        category: "garden",
         image: "/tv.png",
     },
 ];
@@ -219,7 +220,7 @@ const OutletProduct = () => {
                         <select
                             id="store-filter"
                             value={selectedStore}
-                            onChange={(e)=> setSelectedStore(e.target.value)}
+                            onChange={(e) => setSelectedStore(e.target.value)}
                             className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                             <option value="">Välj butik</option>
@@ -245,7 +246,7 @@ const OutletProduct = () => {
                     <span className="text-sm font-medium text-gray-700">SORTERA EFTER</span>
                     <select
                         value={sortBy}
-                        onChange={(e)=> setSortBy(e.target.value)}
+                        onChange={(e) => setSortBy(e.target.value)}
                         className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="relevance">Mest relevant</option>
@@ -257,12 +258,12 @@ const OutletProduct = () => {
                 </div>
             </section>
             {/* ✅ Product Grid */}
-            <section className="px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pb-12">
+            <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-6 py-8">
                 {filteredProducts.map(product => (
                     <Link
                         key={product.id}
                         to={`/product/${product.id}`}
-                        className="bg-white p-4 rounded-md shadow hover:shadow-md transition"
+                        className="flex flex-col items-center gap-3 p-5 bg-white shadow rounded-xl hover:bg-gray-50 transition text-center"
                     >
                         <div className="relative w-full h-32 flex items-center justify-center mb-2">
                             <div
@@ -284,6 +285,10 @@ const OutletProduct = () => {
                     </p>
                 )}
             </section>
+
+            <footer>
+                <Footer/>
+            </footer>
         </section>
     );
 };
