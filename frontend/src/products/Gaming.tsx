@@ -101,7 +101,7 @@ const productList = [
 const Gaming = () => {
     return (
         <section>
-            <header className="px-6 py-8">
+            <header className="px-6 py-12 max-w-7xl mx-auto">
                 <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">GAMING</h1>
                 <p className="text-gray-600 text-base md:text-lg max-w-2xl">
                     Allt för din ultimata spelupplevelse – konsoler, tillbehör och gaming-PC i världsklass.
