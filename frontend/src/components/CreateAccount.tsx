@@ -201,7 +201,7 @@ const CreateAccount = () => {
             const response = await axios.post('http://localhost:3001/users', newUser);
             // alert('Användare sparad!')
             console.log('Server response: ', response.data);
-            login(`${firstName} ${lastName}`);
+            login(email);
             navigate('/');
             setErrorMsg('');
         } catch (error: any) {
