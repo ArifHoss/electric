@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+import {DataTypes} from "sequelize";
 import sequelize from "../sequelize";
 
 const User = sequelize.define(
@@ -53,6 +53,13 @@ const User = sequelize.define(
             type: DataTypes.DATEONLY,
             allowNull: false,
         },
+
+        role: {
+            type: DataTypes.ENUM('user', 'admin'),
+            allowNull: false,
+            defaultValue: 'user',
+        },
+
     },
     {
         tableName: 'users',
