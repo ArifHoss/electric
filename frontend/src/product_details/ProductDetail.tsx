@@ -40,7 +40,6 @@ const ProductDetail = () => {
     function handleAddToCart(product: Product | null) {
         if (product) addToCart(product);
         alert('ADDED TO CART')
-
     }
 
     return (
