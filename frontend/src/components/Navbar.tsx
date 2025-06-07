@@ -2,7 +2,7 @@ import {useState, useRef, useEffect} from 'react'; // ← add useRef and useEffe
 import {Link} from 'react-router-dom';
 import {FiMenu, FiUser, FiShoppingCart, FiMapPin} from 'react-icons/fi';
 import {FaTimes, FaEdgeLegacy} from 'react-icons/fa';
-import {useAuth} from "./AuthContext.tsx";
+import {useAuth, useCart} from "./AuthContext.tsx";
 
 const menuItems = [
     {label: 'Datorer & Kontor', to: '/dator'},
@@ -35,6 +35,7 @@ const Navbar = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const drawerRef = useRef<HTMLDivElement>(null);
     const {user} = useAuth();
+    const {totalItems} = useCart();
 
     const initials = user
         ? `${user.firstName[0] ?? ''}${user.lastName[0] ?? ''}`.toUpperCase()
@@ -66,6 +67,34 @@ const Navbar = () => {
     }, []);
 
 
+    // const NavIcons = () => (
+    //     <div className="flex items-center justify-around w-full md:w-auto gap-6 text-sm">
+    //         <Link to="/location" className="flex flex-col items-center hover:text-blue-400">
+    //             <FiMapPin className="text-xl"/>
+    //             <span className="hidden md:inline text-xs">Butik</span>
+    //         </Link>
+    //         {user ? (
+    //             <Link to="/minsida" className="flex flex-col items-center hover:text-blue-400 text-sm">
+    //                 <div className="text-xl">
+    //                     <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold">
+    //                         {initials}
+    //                     </div>
+    //                 </div>
+    //                 <span className="hidden md:inline text-xs">Min sida</span>
+    //             </Link>
+    //         ) : (
+    //             <Link to="/login" className="flex flex-col items-center hover:text-blue-400">
+    //                 <FiUser className="text-xl"/>
+    //                 <span className="hidden md:inline text-xs">Login</span>
+    //             </Link>
+    //         )}
+    //         <Link to="/cart" className="flex flex-col items-center hover:text-blue-400">
+    //             <FiShoppingCart className="text-xl"/>
+    //             <span className="hidden md:inline text-xs">Kundvagn</span>
+    //         </Link>
+    //     </div>
+    // );
+
     const NavIcons = () => (
         <div className="flex items-center justify-around w-full md:w-auto gap-6 text-sm">
             <Link to="/location" className="flex flex-col items-center hover:text-blue-400">
@@ -75,7 +104,8 @@ const Navbar = () => {
             {user ? (
                 <Link to="/minsida" className="flex flex-col items-center hover:text-blue-400 text-sm">
                     <div className="text-xl">
-                        <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold">
+                        <div
+                            className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold">
                             {initials}
                         </div>
                     </div>
@@ -87,12 +117,22 @@ const Navbar = () => {
                     <span className="hidden md:inline text-xs">Login</span>
                 </Link>
             )}
-            <Link to="/cart" className="flex flex-col items-center hover:text-blue-400">
-                <FiShoppingCart className="text-xl"/>
-                <span className="hidden md:inline text-xs">Kundvagn</span>
-            </Link>
+
+            <div className="relative">
+                <Link to="/cart" className="flex flex-col items-center hover:text-blue-400">
+                    <FiShoppingCart className="text-xl"/>
+                    <span className="hidden md:inline text-xs">Kundvagn</span>
+                </Link>
+                {totalItems > 0 && (
+                    <span
+                        className="absolute -top-1 -right-2 bg-red-600 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                    {totalItems}
+                </span>
+                )}
+            </div>
         </div>
     );
+
 
     return (
         <section>
@@ -142,20 +182,21 @@ const Navbar = () => {
                                     }
                                 }
                             }}
-                            onChange={(e)=>{
+                            onChange={(e) => {
                                 const value = e.target.value;
                                 setSearchText(value);
                                 setSuggestions(
-                                    menuItems.filter((item)=>
-                                    item.label.toLowerCase().includes(value.toLowerCase())
+                                    menuItems.filter((item) =>
+                                        item.label.toLowerCase().includes(value.toLowerCase())
                                     )
                                 );
                             }}
                             className="w-full px-4 py-2 pl-10 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         {searchText && suggestions.length > 0 && (
-                            <div className="absolute top-full left-0 w-full bg-white text-black shadow-md rounded-md z-50 mt-1">
-                                {suggestions.map(({ label, to }, idx) => (
+                            <div
+                                className="absolute top-full left-0 w-full bg-white text-black shadow-md rounded-md z-50 mt-1">
+                                {suggestions.map(({label, to}, idx) => (
                                     <Link
                                         key={idx}
                                         to={to || '#'}
@@ -208,9 +249,17 @@ const Navbar = () => {
                                 <FiUser className="text-xl hover:text-blue-400"/>
                             </Link>
                         )}
-                        <Link to="/cart">
-                            <FiShoppingCart className="text-xl hover:text-blue-400"/>
-                        </Link>
+                        <div className="relative">
+                            <Link to="/cart">
+                                <FiShoppingCart className="text-xl hover:text-blue-400"/>
+                            </Link>
+                            {totalItems > 0 && (
+                                <span
+                                    className="absolute -top-1 -right-2 bg-red-600 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                                    {totalItems}
+                                </span>
+                            )}
+                        </div>
                     </div>
 
                     {/* DESKTOP: icons with text */}
@@ -257,11 +306,11 @@ const Navbar = () => {
                         type="text"
                         placeholder="Sök produkter..."
                         value={searchText}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                             const value = e.target.value;
                             setSearchText(value);
                             setSuggestions(
-                                menuItems.filter((item)=>
+                                menuItems.filter((item) =>
                                     item.label.toLowerCase().includes(value.toLowerCase())
                                 )
                             );
@@ -269,7 +318,8 @@ const Navbar = () => {
                         className="w-full px-4 py-2 pl-10 rounded-md bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                     {searchText && suggestions.length > 0 && (
-                        <div className="absolute top-full left-0 w-full bg-white text-black shadow-md rounded-md z-50 mt-1">
+                        <div
+                            className="absolute top-full left-0 w-full bg-white text-black shadow-md rounded-md z-50 mt-1">
                             {suggestions.map(({label, to}, idx) => (
                                 <Link
                                     key={idx}
