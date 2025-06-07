@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import Footer from "../components/Footer.tsx";
 import ProductCard from "../banner/ProductCard.tsx";
+import products from "../data/products.ts";
 
 const homeGardenMenu = [
     {label: "Dammsugare", to: "/demo", image: "/coffee.png"},
@@ -13,49 +14,68 @@ const homeGardenMenu = [
     {label: "Belysning", to: "/demo", image: "/coffee.png"}
 ];
 
-const homeGardenProducts = [
-    {
-        image: "/coffee.png",
-        title: "Roborock S8+ Robotdammsugare",
-        reviews: 27,
-        description: "Effektiv rengöring med självtömmande station och smart navigering.",
-        availability: "I lager online (20+) | Finns i 38 butiker",
-        to: "/product/601"
-    },
-    {
-        image: "/coffee.png",
-        title: "Dyson Pure Cool Me Luftrenare",
-        reviews: 14,
-        description: "Personlig luftrening och svalka i ett kompakt format.",
-        availability: "I lager online (10+) | Finns i 22 butiker",
-        to: "/product/602"
-    },
-    {
-        image: "/coffee.png",
-        title: "Nespresso Vertuo Next Kaffemaskin",
-        reviews: 41,
-        description: "Brygg alla typer av kaffe med ett knapptryck.",
-        availability: "I lager online (45+) | Finns i 50 butiker",
-        to: "/product/603"
-    },
-    {
-        image: "/coffee.png",
-        title: "OBH Nordica Vattenkokare",
-        reviews: 18,
-        description: "Elegant och snabbkokande vattenkokare för alla kök.",
-        availability: "I lager online | Finns i 60 butiker",
-        to: "/product/604"
-    },
-    {
-        image: "/coffee.png",
-        title: "Bosch Trimmer EasyGrassCut 23",
-        reviews: 8,
-        description: "Smidig trimmer för mindre trädgårdsytor.",
-        availability: "I lager online | Finns i 32 butiker",
-        to: "/product/605"
-    }
-];
-
+// const homeGardenProducts = [
+//     {
+//         image: "/coffee.png",
+//         title: "Roborock S8+ Robotdammsugare",
+//         reviews: 27,
+//         description: "Effektiv rengöring med självtömmande station och smart navigering.",
+//         availability: "I lager online (20+) | Finns i 38 butiker",
+//         price: 7490,
+//         category: "Home",
+//         currency: "SEK",
+//         stock: 80,
+//         to: "/product/601"
+//     },
+//     {
+//         image: "/coffee.png",
+//         title: "Dyson Pure Cool Me Luftrenare",
+//         reviews: 14,
+//         description: "Personlig luftrening och svalka i ett kompakt format.",
+//         availability: "I lager online (10+) | Finns i 22 butiker",
+//         price: 3490,
+//         category: "Home",
+//         currency: "SEK",
+//         stock: 50,
+//         to: "/product/602"
+//     },
+//     {
+//         image: "/coffee.png",
+//         title: "Nespresso Vertuo Next Kaffemaskin",
+//         reviews: 41,
+//         description: "Brygg alla typer av kaffe med ett knapptryck.",
+//         availability: "I lager online (45+) | Finns i 50 butiker",
+//         price: 1890,
+//         category: "Home",
+//         currency: "SEK",
+//         stock: 140,
+//         to: "/product/603"
+//     },
+//     {
+//         image: "/coffee.png",
+//         title: "OBH Nordica Vattenkokare",
+//         reviews: 18,
+//         description: "Elegant och snabbkokande vattenkokare för alla kök.",
+//         availability: "I lager online | Finns i 60 butiker",
+//         price: 590,
+//         category: "Home",
+//         currency: "SEK",
+//         stock: 200,
+//         to: "/product/604"
+//     },
+//     {
+//         image: "/coffee.png",
+//         title: "Bosch Trimmer EasyGrassCut 23",
+//         reviews: 8,
+//         description: "Smidig trimmer för mindre trädgårdsytor.",
+//         availability: "I lager online | Finns i 32 butiker",
+//         price: 890,
+//         category: "Garden",
+//         currency: "SEK",
+//         stock: 75,
+//         to: "/product/605"
+//     }
+// ];
 const HomeGarden = () => {
     return (
         <section>
@@ -82,9 +102,11 @@ const HomeGarden = () => {
 
             <section className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {homeGardenProducts.map((product, idx) => (
-                        <ProductCard key={idx} {...product} />
-                    ))}
+                    {products
+                        .filter(product => product.category === "LAPTOP".toUpperCase()) // CATEGORY NEED TO MATCH EXACTLY
+                        .map((product, idx) => (
+                            <ProductCard key={idx} {...product} />
+                        ))}
                 </div>
             </section>
 

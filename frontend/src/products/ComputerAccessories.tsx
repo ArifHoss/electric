@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.tsx";
 import ProductCard from "../banner/ProductCard.tsx";
+import products from "../data/products.ts";
 
 const accessoriesMenuItems = [
     { label: "Tangentbord", to: "/demo", image: "/keyboard.png" },
@@ -13,48 +14,6 @@ const accessoriesMenuItems = [
     { label: "USB-hubbar", to: "/demo", image: "/keyboard.png" }
 ];
 
-const accessoriesProductList = [
-    {
-        image: "/keyboard.png",
-        title: "Logitech MX Keys – Trådlöst Tangentbord",
-        reviews: 42,
-        description: "Elegant, bekvämt och pålitligt tangentbord för arbete och kreativitet.",
-        availability: "I lager online (40+) | Finns i 65 butiker",
-        to: "/product/401"
-    },
-    {
-        image: "/keyboard.png",
-        title: "Logitech MX Master 3S Trådlös Mus",
-        reviews: 39,
-        description: "Avancerad mus för maximal produktivitet och ergonomi.",
-        availability: "I lager online | Finns i 58 butiker",
-        to: "/product/402"
-    },
-    {
-        image: "/keyboard.png",
-        title: "ASUS 27\" WQHD Skärm 165Hz",
-        reviews: 21,
-        description: "Perfekt för gaming och arbete – hög upplösning och uppdateringsfrekvens.",
-        availability: "I lager online (25+) | Finns i 33 butiker",
-        to: "/product/403"
-    },
-    {
-        image: "/keyboard.png",
-        title: "SteelSeries Arctis Nova 7P Wireless Headset",
-        reviews: 16,
-        description: "Trådlöst premium-headset med kristallklart ljud och komfort.",
-        availability: "I lager online (20+) | Finns i 45 butiker",
-        to: "/product/404"
-    },
-    {
-        image: "/keyboard.png",
-        title: "Targus CitySmart 15.6\" Laptopväska",
-        reviews: 12,
-        description: "Skyddande och stilren väska för arbete och resa.",
-        availability: "I lager online | Finns i 29 butiker",
-        to: "/product/405"
-    }
-];
 
 const ComputerAccessories = () => {
     return (
@@ -81,9 +40,11 @@ const ComputerAccessories = () => {
 
             <section className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {accessoriesProductList.map((product, idx) => (
-                        <ProductCard key={idx} {...product} />
-                    ))}
+                    {products
+                        .filter(product => product.category === "LAPTOP".toUpperCase()) // CATEGORY NEED TO MATCH EXACTLY
+                        .map((product, idx) => (
+                            <ProductCard key={idx} {...product} />
+                        ))}
                 </div>
             </section>
 

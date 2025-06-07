@@ -32,7 +32,7 @@ import Vitavaror from "./products/Vitavaror.tsx";
 import OutletProduct from "./products/OutletProduct.tsx";
 import ProductDetail from "./product_details/ProductDetail.tsx";
 import Demo from "./products/Demo.tsx";
-import ComputerCard from "./banner/ComputerCard.tsx";
+import Datorer from "./products/Datorer.tsx";
 
 // Layout with Navbar + page content
 const Layout = () => (
@@ -77,7 +77,7 @@ function App() {
                     <Route path="/vitavaror" element={<Vitavaror/>}/>
                     <Route path="/product/:id" element={<ProductDetail/>}/>
                     <Route path="/demo" element={<Demo/>}/>
-                    <Route path="/computercard" element={<ComputerCard/>}/>
+                    <Route path="/computer" element={<Datorer/>}/>
                 </Route>
             </Routes>
         </Router>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.tsx";
 import ProductCard from "../banner/ProductCard.tsx";
+import products from "../data/products.ts";
 
 const legoMenuItems = [
     { label: "LEGO City", to: "/demo", image: "/lego.png" },
@@ -13,49 +14,68 @@ const legoMenuItems = [
     { label: "LEGO Marvel", to: "/demo", image: "/lego.png" }
 ];
 
-const legoProductList = [
-    {
-        image: "/lego.png",
-        title: "LEGO City Brandstation",
-        reviews: 14,
-        description: "Hjälp brandmännen att släcka elden och rädda dagen!",
-        availability: "I lager online (30+) | Finns i 55 butiker",
-        to: "/product/301"
-    },
-    {
-        image: "/lego.png",
-        title: "LEGO Technic Bugatti Bolide",
-        reviews: 21,
-        description: "Bygg en ikonisk superbilsmodell i detalj.",
-        availability: "I lager online | Finns i 40 butiker",
-        to: "/product/302"
-    },
-    {
-        image: "/lego.png",
-        title: "LEGO Friends Hårsalong",
-        reviews: 5,
-        description: "Skapa roliga frisyrer och scener med Friends-världen.",
-        availability: "I lager online | Finns i 33 butiker",
-        to: "/product/303"
-    },
-    {
-        image: "/lego.png",
-        title: "LEGO Ninjago Drakens Tempel",
-        reviews: 8,
-        description: "Skydda templet med dina ninjahjältar!",
-        availability: "I lager online (20+) | Finns i 44 butiker",
-        to: "/product/304"
-    },
-    {
-        image: "/lego.png",
-        title: "LEGO Duplo Bondgård",
-        reviews: 11,
-        description: "Lär och lek med djur och byggklossar för de minsta.",
-        availability: "I lager online (50+) | Finns i 60 butiker",
-        to: "/product/305"
-    }
-];
-
+// const legoProductList = [
+//     {
+//         image: "/lego.png",
+//         title: "LEGO City Brandstation",
+//         reviews: 14,
+//         description: "Hjälp brandmännen att släcka elden och rädda dagen!",
+//         availability: "I lager online (30+) | Finns i 55 butiker",
+//         price: 599,
+//         category: "Leksaker",
+//         currency: "SEK",
+//         stock: 120,
+//         to: "/product/301"
+//     },
+//     {
+//         image: "/lego.png",
+//         title: "LEGO Technic Bugatti Bolide",
+//         reviews: 21,
+//         description: "Bygg en ikonisk superbilsmodell i detalj.",
+//         availability: "I lager online | Finns i 40 butiker",
+//         price: 1190,
+//         category: "Leksaker",
+//         currency: "SEK",
+//         stock: 80,
+//         to: "/product/302"
+//     },
+//     {
+//         image: "/lego.png",
+//         title: "LEGO Friends Hårsalong",
+//         reviews: 5,
+//         description: "Skapa roliga frisyrer och scener med Friends-världen.",
+//         availability: "I lager online | Finns i 33 butiker",
+//         price: 349,
+//         category: "Leksaker",
+//         currency: "SEK",
+//         stock: 90,
+//         to: "/product/303"
+//     },
+//     {
+//         image: "/lego.png",
+//         title: "LEGO Ninjago Drakens Tempel",
+//         reviews: 8,
+//         description: "Skydda templet med dina ninjahjältar!",
+//         availability: "I lager online (20+) | Finns i 44 butiker",
+//         price: 749,
+//         category: "Leksaker",
+//         currency: "SEK",
+//         stock: 100,
+//         to: "/product/304"
+//     },
+//     {
+//         image: "/lego.png",
+//         title: "LEGO Duplo Bondgård",
+//         reviews: 11,
+//         description: "Lär och lek med djur och byggklossar för de minsta.",
+//         availability: "I lager online (50+) | Finns i 60 butiker",
+//         price: 449,
+//         category: "Leksaker",
+//         currency: "SEK",
+//         stock: 140,
+//         to: "/product/305"
+//     }
+// ];
 const LEGO = () => {
     return (
         <section>
@@ -81,9 +101,11 @@ const LEGO = () => {
 
             <section className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {legoProductList.map((product, idx) => (
-                        <ProductCard key={idx} {...product} />
-                    ))}
+                    {products
+                        .filter(product => product.category === "LAPTOP".toUpperCase()) // CATEGORY NEED TO MATCH EXACTLY
+                        .map((product, idx) => (
+                            <ProductCard key={idx} {...product} />
+                        ))}
                 </div>
             </section>
 

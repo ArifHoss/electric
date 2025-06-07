@@ -2,7 +2,7 @@ import Footer from "../components/Footer.tsx";
 import {Link} from "react-router-dom";
 
 const menuItems = [
-    {label: "Datorer", to: "/computercard", image: "/computer-acc.png",},
+    {label: "Datorer", to: "/computer", image: "/computer-acc.png",},
     {label: "Datorkomponenter", to: "/demo", image: "/componet.png"},
     {label: "Datortillbehör", to: "/demo", image: "/keyboard.png"},
     {label: "Skärmar & Tillbehör", to: "/demo", image: "/monitor.png"},

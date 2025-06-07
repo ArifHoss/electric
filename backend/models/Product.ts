@@ -19,7 +19,7 @@ const Product = sequelize.define(
             allowNull: false,
         },
         category: {
-            type: DataTypes.ENUM("Laptop", "Phone", "TV", "Fridge", "Tablet", "Smartwatch", "Accessory", "Other"),
+            type: DataTypes.ENUM("LAPTOP", "PHONE", "TV", "FRIDGE", "TABLET", "SMARTWATCH", "ACCESSORY", "OTHER"),
             allowNull: false,
         },
         price: {
