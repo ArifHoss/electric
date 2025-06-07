@@ -19,12 +19,16 @@ type AuthContextType = {
     addToCart: (product: Product) => void;
     removeFromCart: (id: number) => void;
     decreaseQuantity: (id: number) => void;
+    clearCart: () => void;
+    products: Product[];
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
     const [user, setUser] = useState<UserData | null>(null);
+    const [products, setProducts] = useState<Product[]>([]);
+
     const [cart, setCart] = useState<Product[]>(() => {
         try {
             const stored = localStorage.getItem('cart');
@@ -45,6 +49,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
+    useEffect(() => {
+        axios
+            .get("http://localhost:3001/products")
+            .then((res) => setProducts(res.data))
+            .catch((err) => console.error("Failed to fetch products:", err));
+    }, []);
+
+
     const login = async (email: string) => {
         try {
             localStorage.setItem('email', email);
@@ -56,12 +68,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
             logout();
         }
     };
+    const clearCart = () => setCart([]);
 
     const logout = () => {
         localStorage.removeItem('email');
         localStorage.removeItem('cart');
         setUser(null);
-        setCart([]);
+        // setCart([]);
+        clearCart();
     };
 
     const addToCart = (product: Product) => {
@@ -77,6 +91,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
     };
 
     const removeFromCart = (id: number) => {
+        console.log("Removing item with ID:", id);
         setCart(prev => prev.filter(item => item.id !== id));
     };
 
@@ -93,7 +108,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
     return (
         <AuthContext.Provider value={{
             user, login, logout, cart, addToCart,
-            removeFromCart, decreaseQuantity
+            removeFromCart, decreaseQuantity, clearCart, products
         }}>
             {children}
         </AuthContext.Provider>
@@ -109,7 +124,7 @@ export const useAuth = () => {
 
 // Cart-specific hook
 export const useCart = () => {
-    const { cart, addToCart, removeFromCart, decreaseQuantity } = useAuth();
+    const {cart, addToCart, removeFromCart, decreaseQuantity, clearCart} = useAuth();
     const totalItems = cart.reduce((sum, item) => sum + (item.quantity ?? 1), 0);
-    return { cart, addToCart, removeFromCart, decreaseQuantity, totalItems };
+    return {cart, addToCart, removeFromCart, decreaseQuantity, totalItems, clearCart};
 };

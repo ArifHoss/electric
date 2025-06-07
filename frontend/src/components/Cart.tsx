@@ -3,7 +3,7 @@ import { useCart } from "./AuthContext.tsx";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const { cart, addToCart, removeFromCart, decreaseQuantity } = useCart();
+    const { cart, addToCart, removeFromCart, decreaseQuantity, clearCart } = useCart();
 
     const totalPrice = useMemo(() => {
         return cart.reduce((sum, item) => sum + item.price * (item.quantity ?? 1), 0);
@@ -62,6 +62,11 @@ const Cart = () => {
             </ul>
 
             <div className="mt-8 text-right space-y-4 md:space-y-0 md:flex md:items-center md:justify-between">
+                <div className="flex justify-end mb-4">
+                    <button onClick={clearCart} className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+                        Töm kundvagn
+                    </button>
+                </div>
                 <p className="text-xl font-bold mb-4 md:mb-0">
                     Totalt: {totalPrice.toFixed(2)} {cart[0]?.currency}
                 </p>
