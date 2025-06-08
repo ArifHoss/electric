@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import ProductCard from "../banner/ProductCard.tsx";
 import Footer from "../components/Footer.tsx";
-import products from "../data/products.ts";
+import {useAuth} from "../components/AuthContext.tsx";
+// import products from "../data/products.ts";
 
 const menuItems = [
     { label: "Spelkonsoler", to: "/demo", image: "/game.png" },
@@ -18,6 +19,7 @@ const menuItems = [
 
 
 const Gaming = () => {
+    const {products} = useAuth();
     return (
         <section>
             <header className="px-6 py-12 max-w-7xl mx-auto">
@@ -43,9 +45,21 @@ const Gaming = () => {
             <section className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {products
-                        .filter(product => product.category === "LAPTOP".toUpperCase()) // CATEGORY NEED TO MATCH EXACTLY
-                        .map((product, idx) => (
-                            <ProductCard key={idx} {...product} />
+                        .filter((product) => product.category === 'OTHER')
+                        .map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                image={"/playstation.png"}
+                                title={product.title}
+                                reviews={product.reviews ?? 0}
+                                description={product.description}
+                                availability={product.availability ?? "Tillgänglighet okänd"}
+                                price={product.price}
+                                currency={product.currency}
+                                category={product.category}
+                                stock={product.stock}
+                                to={`/product/${product.id}`}
+                            />
                         ))}
                 </div>
             </section>

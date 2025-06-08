@@ -1,7 +1,8 @@
 import {Link} from "react-router-dom";
 import Footer from "../components/Footer.tsx";
 import ProductCard from "../banner/ProductCard.tsx";
-import products from "../data/products.ts";
+import {useAuth} from "../components/AuthContext.tsx";
+
 
 const menuItems = [
     {label: "Mobiltelefon", to: "/computercard", image: "/computer-acc.png",},
@@ -19,131 +20,8 @@ const menuItems = [
 
 ];
 
-// const productList = [
-//     {
-//         image: "/iphone.png",
-//         title: "iPhone 15 Pro Max 256GB – Titanium",
-//         reviews: 24,
-//         description: "Snygg, snabb och byggd för fotografering i världsklass.",
-//         availability: "I lager online (50+) | Finns i 70 butiker",
-//         price: 15990,
-//         category: "Phone",
-//         currency: "SEK",
-//         stock: 120,
-//         to: "/product/101"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Samsung Galaxy Tab S9 11\" 5G 256GB",
-//         reviews: 12,
-//         description: "Kraftfull surfplatta för både arbete och nöje.",
-//         availability: "I lager online (30+) | Finns i 45 butiker",
-//         price: 11490,
-//         category: "Tablet",
-//         currency: "SEK",
-//         stock: 90,
-//         to: "/product/102"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Oura Ring Gen 3 – Silver",
-//         reviews: 6,
-//         description: "Spåra din sömn, puls och aktivitet i elegant format.",
-//         availability: "Begränsat lager | Endast online",
-//         price: 3790,
-//         category: "Accessory",
-//         currency: "SEK",
-//         stock: 30,
-//         to: "/product/103"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Apple Watch Series 9 GPS 45mm",
-//         reviews: 30,
-//         description: "Den smartaste klockan – nu med dubbeltryck-funktion.",
-//         availability: "I lager online | Finns i 60 butiker",
-//         price: 5790,
-//         category: "Smartwatch",
-//         currency: "SEK",
-//         stock: 110,
-//         to: "/product/104"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Xiaomi Smart Band 8",
-//         reviews: 9,
-//         description: "Prisvärd aktivitetsarmband med lång batteritid.",
-//         availability: "I lager online | Finns i 80 butiker",
-//         price: 590,
-//         category: "Accessory",
-//         currency: "SEK",
-//         stock: 150,
-//         to: "/product/105"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Garmin Forerunner 265 GPS Träningsklocka",
-//         reviews: 17,
-//         description: "Avancerad träning och hälsospårning.",
-//         availability: "Begränsat lager | Finns i 25 butiker",
-//         price: 5790,
-//         category: "Smartwatch",
-//         currency: "SEK",
-//         stock: 40,
-//         to: "/product/106"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Spigen Mag Armor Skal för iPhone 15",
-//         reviews: 5,
-//         description: "Tunt och skyddande skal med MagSafe-stöd.",
-//         availability: "I lager online | Finns i 90 butiker",
-//         price: 390,
-//         category: "Accessory",
-//         currency: "SEK",
-//         stock: 200,
-//         to: "/product/107"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Apple Sport Loop Band – Midnight",
-//         reviews: 3,
-//         description: "Bekvämt och justerbart band för Apple Watch.",
-//         availability: "I lager online | Finns i 40 butiker",
-//         price: 590,
-//         category: "Accessory",
-//         currency: "SEK",
-//         stock: 120,
-//         to: "/product/108"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Begagnad iPhone 13 128GB (B-klass)",
-//         reviews: 7,
-//         description: "Miljövänligt val – testad och återställd.",
-//         availability: "Endast online | 12 månaders garanti",
-//         price: 6790,
-//         category: "Phone",
-//         currency: "SEK",
-//         stock: 50,
-//         to: "/product/109"
-//     },
-//     {
-//         image: "/iphone.png",
-//         title: "Huawei 4G LTE B535 Mobilt Bredband Router",
-//         reviews: 10,
-//         description: "Stabilt internet med stöd för upp till 64 enheter.",
-//         availability: "I lager online | Finns i 33 butiker",
-//         price: 1190,
-//         category: "Accessory",
-//         currency: "SEK",
-//         stock: 85,
-//         to: "/product/110"
-//     }
-// ];
-
-
 const Phone = () => {
+    const {products} = useAuth();
 
     return (
         <section>
@@ -176,9 +54,21 @@ const Phone = () => {
             <section className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {products
-                        .filter(product => product.category === "LAPTOP".toUpperCase()) // CATEGORY NEED TO MATCH EXACTLY
-                        .map((product, idx) => (
-                            <ProductCard key={idx} {...product} />
+                        .filter((product)=> product.category==="PHONE")
+                        .map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                image={"/phone.png"}
+                                title={product.title}
+                                reviews={product.reviews ?? 0}
+                                description={product.description}
+                                availability={product.availability ?? "Tillgänglighet okänd"}
+                                price={product.price}
+                                currency={product.currency}
+                                category={product.category}
+                                stock={product.stock}
+                                to={`/product/${product.id}`}
+                            />
                         ))}
                 </div>
             </section>
