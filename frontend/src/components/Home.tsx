@@ -11,7 +11,6 @@ import {SiAirtable} from "react-icons/si";
 import {MdOutlet, MdOutlineMedicalServices} from "react-icons/md";
 import {Link} from "react-router-dom";
 import BannerCarousel from "../banner/BannerCarousel.tsx";
-import CategoryCards from "../banner/CategoryCards.tsx";
 import Footer from "./Footer.tsx";
 import ProductCard from "../banner/ProductCard.tsx";
 import {useAuth} from "./AuthContext.tsx";
@@ -30,14 +29,7 @@ const menuItems = [
 ];
 
 const Home = () => {
-    // const [products, setProducts] = useState<any[]>([]);
-    //
-    // useEffect(() => {
-    //     axios
-    //         .get("http://localhost:3001/products") // update if your API route is different
-    //         .then((res) => setProducts(res.data))
-    //         .catch((err) => console.error("Failed to fetch products:", err));
-    // }, []);
+
     const {products} = useAuth();
 
     return (
@@ -60,10 +52,9 @@ const Home = () => {
             <section className="w-screen relative left-1/2 right-1/2 -mx-[50vw] px-0">
                 <BannerCarousel/>
             </section>
-            {/* Product categories - vertical scrollable */}
-            <CategoryCards/>
-            <CategoryCards/>
+
             <section className="p-6">
+                <h1 className="text-2xl font-bold">NÅGOT FÖR DIG?</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {products
                         .map((product) => (
