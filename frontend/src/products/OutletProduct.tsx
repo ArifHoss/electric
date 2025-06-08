@@ -6,18 +6,18 @@ import {useAuth} from "../components/AuthContext.tsx";
 
 
 const outletMenuItems = [
-    { label: "OUTLET – TV & Hemmabio", category: "tv", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Datorer & Kontor", category: "computer", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – TV & Hemmabio", category: "tv", to: "/demo", image: "/camera.png" },
+    { label: "OUTLET – Datorer & Kontor", category: "computer", to: "/demo", image: "/ballet.png" },
     { label: "OUTLET – Mobiler & Tablets", category: "phone", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Smartklockor", category: "watch", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Vitvaror", category: "vitvaror", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Gaming", category: "gaming", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Ljud & Högtalare", category: "sound", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Skönhet & Hälsa", category: "beauty", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Sport & Fritid", category: "sports", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Trädgård & Utemiljö", category: "garden", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Belysning & Smarta Hem", category: "smart-home", to: "/demo", image: "/tv.png" },
-    { label: "OUTLET – Kaffemaskiner & Kök", category: "kitchen", to: "/demo", image: "/tv.png" }
+    { label: "OUTLET – Smartklockor", category: "watch", to: "/demo", image: "/componet.png" },
+    { label: "OUTLET – Vitvaror", category: "vitvaror", to: "/demo", image: "/dryer.png" },
+    { label: "OUTLET – Gaming", category: "gaming", to: "/demo", image: "/fridge-7.png" },
+    { label: "OUTLET – Ljud & Högtalare", category: "sound", to: "/demo", image: "/game.png" },
+    { label: "OUTLET – Skönhet & Hälsa", category: "beauty", to: "/demo", image: "/hard.png" },
+    { label: "OUTLET – Sport & Fritid", category: "sports", to: "/demo", image: "/hard.png" },
+    { label: "OUTLET – Trädgård & Utemiljö", category: "garden", to: "/demo", image: "/logo.png" },
+    { label: "OUTLET – Belysning & Smarta Hem", category: "smart-home", to: "/demo", image: "/money.png" },
+    { label: "OUTLET – Kaffemaskiner & Kök", category: "kitchen", to: "/demo", image: "/coffee.png" }
 ];
 
 
