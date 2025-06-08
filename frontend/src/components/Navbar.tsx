@@ -17,7 +17,7 @@ const menuItems = [
     {label: 'Sport & Fritid', to: '/sport'},
     {label: 'LEGO', to: '/lego'},
     {label: 'Tjänster & Tillbehör', to: '/service'},
-    {label: 'Elgiganten Företag', to: '/dator'},
+    {label: 'Elgiganten Företag', to: '/company'},
     {label: 'Outlet', to: '/outlet'},
     {label: 'Kampanjer', to: '/kampanjer'},
     {label: 'Elgiganten Kundklubb', to: '/kundklubb'},
@@ -25,9 +25,7 @@ const menuItems = [
 ];
 
 const Navbar = () => {
-    //Search state
-    // const [searchText, setSearchText] = useState('');
-    // const [suggestions, setSuggestions] = useState(menuItems);
+
     const [searchText, setSearchText] = useState('');
     const [suggestions, setSuggestions] = useState<typeof menuItems>([]);
     const [highlightIndex, setHighlightIndex] = useState(-1);
@@ -67,33 +65,6 @@ const Navbar = () => {
     }, []);
 
 
-    // const NavIcons = () => (
-    //     <div className="flex items-center justify-around w-full md:w-auto gap-6 text-sm">
-    //         <Link to="/location" className="flex flex-col items-center hover:text-blue-400">
-    //             <FiMapPin className="text-xl"/>
-    //             <span className="hidden md:inline text-xs">Butik</span>
-    //         </Link>
-    //         {user ? (
-    //             <Link to="/minsida" className="flex flex-col items-center hover:text-blue-400 text-sm">
-    //                 <div className="text-xl">
-    //                     <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold">
-    //                         {initials}
-    //                     </div>
-    //                 </div>
-    //                 <span className="hidden md:inline text-xs">Min sida</span>
-    //             </Link>
-    //         ) : (
-    //             <Link to="/login" className="flex flex-col items-center hover:text-blue-400">
-    //                 <FiUser className="text-xl"/>
-    //                 <span className="hidden md:inline text-xs">Login</span>
-    //             </Link>
-    //         )}
-    //         <Link to="/cart" className="flex flex-col items-center hover:text-blue-400">
-    //             <FiShoppingCart className="text-xl"/>
-    //             <span className="hidden md:inline text-xs">Kundvagn</span>
-    //         </Link>
-    //     </div>
-    // );
 
     const NavIcons = () => (
         <div className="flex items-center justify-around w-full md:w-auto gap-6 text-sm">
