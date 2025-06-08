@@ -8,9 +8,7 @@ import {SiAirtable} from "react-icons/si";
 import {Link} from "react-router-dom";
 import Footer from "../components/Footer.tsx";
 import ProductCard from "../banner/ProductCard.tsx";
-import {useEffect, useState} from "react";
-import axios from "axios";
-// import products from "../data/products.ts";
+import {useAuth} from "../components/AuthContext.tsx";
 
 const menuItems = [
     {label: "LAPTOP", to: "/demo", icon: <MdOutlet/>},
@@ -26,15 +24,7 @@ const menuItems = [
 ];
 
 const Datorer = () => {
-
-    const [products, setProducts] = useState<any[]>([]);
-
-    useEffect(() => {
-        axios
-            .get("http://localhost:3001/products") // update if your API route is different
-            .then((res) => setProducts(res.data))
-            .catch((err) => console.error("Failed to fetch products:", err));
-    }, []);
+    const {products} = useAuth();
 
   return(
       <section>
@@ -64,7 +54,7 @@ const Datorer = () => {
                       .map((product) => (
                           <ProductCard
                               key={product.id}
-                              image={product.image || "/computer.png"}
+                              image={"/computer.png"}
                               title={product.title}
                               reviews={product.reviews ?? 0}
                               description={product.description}
