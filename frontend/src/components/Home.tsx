@@ -13,6 +13,8 @@ import {Link} from "react-router-dom";
 import BannerCarousel from "../banner/BannerCarousel.tsx";
 import CategoryCards from "../banner/CategoryCards.tsx";
 import Footer from "./Footer.tsx";
+import ProductCard from "../banner/ProductCard.tsx";
+import {useAuth} from "./AuthContext.tsx";
 
 const menuItems = [
     {label: "Outlet", to: "/outlet", icon: <MdOutlet/>},
@@ -28,6 +30,15 @@ const menuItems = [
 ];
 
 const Home = () => {
+    // const [products, setProducts] = useState<any[]>([]);
+    //
+    // useEffect(() => {
+    //     axios
+    //         .get("http://localhost:3001/products") // update if your API route is different
+    //         .then((res) => setProducts(res.data))
+    //         .catch((err) => console.error("Failed to fetch products:", err));
+    // }, []);
+    const {products} = useAuth();
 
     return (
         <section>
@@ -52,6 +63,26 @@ const Home = () => {
             {/* Product categories - vertical scrollable */}
             <CategoryCards/>
             <CategoryCards/>
+            <section className="p-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                    {products
+                        .map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                image={"/computer.png"}
+                                title={product.title}
+                                reviews={product.reviews ?? 0}
+                                description={product.description}
+                                availability={product.availability ?? "Tillgänglighet okänd"}
+                                price={product.price}
+                                currency={product.currency}
+                                category={product.category}
+                                stock={product.stock}
+                                to={`/product/${product.id}`}
+                            />
+                        ))}
+                </div>
+            </section>
             <footer>
                 <Footer/>
             </footer>

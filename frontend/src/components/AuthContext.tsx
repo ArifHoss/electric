@@ -5,10 +5,21 @@ import type {UserData} from '../types.ts';
 interface Product {
     id: number;
     title: string;
+    description: string;
+    category: string;
     price: number;
     currency: string;
+    stock: number;
     image?: string;
-    quantity?: number;
+    reviews?: number;
+    availability?: string;
+    extraInfo?: string;
+    warranty?: string;
+    manufacturer?: string;
+    modelNumber?: string;
+    releaseDate?: string;
+    features?: string[];
+    quantity?:number;
 }
 
 type AuthContextType = {
