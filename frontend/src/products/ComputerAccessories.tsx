@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer.tsx";
 import ProductCard from "../banner/ProductCard.tsx";
-import products from "../data/products.ts";
+import {useAuth} from "../components/AuthContext.tsx";
 
 const accessoriesMenuItems = [
     { label: "Tangentbord", to: "/demo", image: "/keyboard.png" },
@@ -16,6 +16,7 @@ const accessoriesMenuItems = [
 
 
 const ComputerAccessories = () => {
+    const {products} = useAuth();
     return (
         <section>
             <header className="px-6 py-10 bg-gray-100 text-center">
@@ -39,11 +40,23 @@ const ComputerAccessories = () => {
             </section>
 
             <section className="p-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {products
-                        .filter(product => product.category === "LAPTOP".toUpperCase()) // CATEGORY NEED TO MATCH EXACTLY
-                        .map((product, idx) => (
-                            <ProductCard key={idx} {...product} />
+                        .filter((product)=> product.category=== "ACCESSORY")
+                        .map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                image={"/computer.png"}
+                                title={product.title}
+                                reviews={product.reviews ?? 0}
+                                description={product.description}
+                                availability={product.availability ?? "Tillgänglighet okänd"}
+                                price={product.price}
+                                currency={product.currency}
+                                category={product.category}
+                                stock={product.stock}
+                                to={`/product/${product.id}`}
+                            />
                         ))}
                 </div>
             </section>
