@@ -2,315 +2,44 @@ import {useState} from "react";
 import {Link} from "react-router-dom";
 import Footer from "../components/Footer.tsx";
 import OutletProductCard from "../banner/OutletProductCard.tsx";
+import {useAuth} from "../components/AuthContext.tsx";
 
-const sampleCategories = [
-    { id: 1, title: "OUTLET – TV & Hemmabio", category: "tv", image: "/tv.png" },
-    { id: 2, title: "OUTLET – Datorer & Kontor", category: "computer", image: "/tv.png" },
-    { id: 3, title: "OUTLET – Mobiler & Tablets", category: "phone", image: "/tv.png" },
-    { id: 4, title: "OUTLET – Smartklockor", category: "watch", image: "/tv.png" },
-    { id: 5, title: "OUTLET – Vitvaror", category: "vitvaror", image: "/tv.png" },
-    { id: 6, title: "OUTLET – Gaming", category: "gaming", image: "/tv.png" },
-    { id: 7, title: "OUTLET – Ljud & Högtalare", category: "sound", image: "/tv.png" },
-    { id: 8, title: "OUTLET – Skönhet & Hälsa", category: "beauty", image: "/tv.png" },
-    { id: 9, title: "OUTLET – Sport & Fritid", category: "sports", image: "/tv.png" },
-    { id: 10, title: "OUTLET – Trädgård & Utemiljö", category: "garden", image: "/tv.png" },
-    { id: 11, title: "OUTLET – Belysning & Smarta Hem", category: "smart-home", image: "/tv.png" },
-    { id: 12, title: "OUTLET – Kaffemaskiner & Kök", category: "kitchen", image: "/tv.png" }
-];
-const baseProductList = [
-    {
-        image: "/tv.png",
-        title: "OUTLET – Samsung 65\" QLED 4K TV",
-        reviews: 5,
-        description: "Demoprodukt med full garanti.",
-        availability: "Begränsat antal | Endast online",
-        discount: 0.25,
-        price: 7990,
-        originalPrice: 10653.33,
-        stock: 10,
-        currency: "SEK",
-        to: "/product/301",
-        category: "tv",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – MacBook Pro 14 M1 512GB",
-        reviews: 12,
-        description: "Tidigare visningsexemplar, som ny.",
-        availability: "I lager online | Finns i 8 butiker",
-        discount: 0.25,
-        price: 13490,
-        originalPrice: 17986.67,
-        stock: 6,
-        currency: "SEK",
-        to: "/product/302",
-        category: "computer",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – iPhone 13 128GB (Blå)",
-        reviews: 9,
-        description: "Återköpt vara, kontrollerad & återställd.",
-        availability: "I lager | Fri frakt",
-        discount: 0.25,
-        price: 6790,
-        originalPrice: 9053.33,
-        stock: 14,
-        currency: "SEK",
-        to: "/product/303",
-        category: "phone",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Sony WH-1000XM4 Hörlurar",
-        reviews: 18,
-        description: "Lätt använd – perfekt skick.",
-        availability: "Begränsat antal | Endast online",
-        discount: 0.25,
-        price: 1790,
-        originalPrice: 2386.67,
-        stock: 8,
-        currency: "SEK",
-        to: "/product/304",
-        category: "sound",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Dell XPS 13 OLED 1TB",
-        reviews: 3,
-        description: "Ex-demo med originalförpackning.",
-        availability: "I lager online | 3 butiker",
-        discount: 0.25,
-        price: 11990,
-        originalPrice: 15986.67,
-        stock: 5,
-        currency: "SEK",
-        to: "/product/305",
-        category: "computer",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Samsung Galaxy Tab S8",
-        reviews: 6,
-        description: "Som ny – tidigare utställd produkt.",
-        availability: "I lager online",
-        discount: 0.25,
-        price: 5690,
-        originalPrice: 7586.67,
-        stock: 9,
-        currency: "SEK",
-        to: "/product/306",
-        category: "phone",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Xbox Series S",
-        reviews: 14,
-        description: "Kartongskadad – fullt fungerande.",
-        availability: "Begränsat antal | 2 års garanti",
-        discount: 0.25,
-        price: 2890,
-        originalPrice: 3853.33,
-        stock: 7,
-        currency: "SEK",
-        to: "/product/307",
-        category: "gaming",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Electrolux Diskmaskin",
-        reviews: 4,
-        description: "Fyndvara från utställning.",
-        availability: "Endast i butik",
-        discount: 0.25,
-        price: 3990,
-        originalPrice: 5320,
-        stock: 3,
-        currency: "SEK",
-        to: "/product/308",
-        category: "vitvaror",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – LG 55\" OLED TV",
-        reviews: 7,
-        description: "Repackad, ej använd.",
-        availability: "I lager | Fri frakt",
-        discount: 0.25,
-        price: 9990,
-        originalPrice: 13320,
-        stock: 6,
-        currency: "SEK",
-        to: "/product/309",
-        category: "tv",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Garmin Smartwatch",
-        reviews: 2,
-        description: "Fabriksåterställd och rengjord.",
-        availability: "I lager online",
-        discount: 0.25,
-        price: 1590,
-        originalPrice: 2120,
-        stock: 10,
-        currency: "SEK",
-        to: "/product/310",
-        category: "watch",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Lenovo ThinkPad E14",
-        reviews: 5,
-        description: "Refurbished med garanti.",
-        availability: "Endast online",
-        discount: 0.25,
-        price: 7890,
-        originalPrice: 10520,
-        stock: 5,
-        currency: "SEK",
-        to: "/product/311",
-        category: "computer",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Bosch Torktumlare",
-        reviews: 3,
-        description: "Utställningsexemplar, fullt fungerande.",
-        availability: "Finns i utvalda butiker",
-        discount: 0.25,
-        price: 4690,
-        originalPrice: 6253.33,
-        stock: 4,
-        currency: "SEK",
-        to: "/product/312",
-        category: "vitvaror",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Huawei FreeBuds 5i",
-        reviews: 4,
-        description: "Ej använd, öppen förpackning.",
-        availability: "I lager online",
-        discount: 0.25,
-        price: 690,
-        originalPrice: 920,
-        stock: 12,
-        currency: "SEK",
-        to: "/product/313",
-        category: "sound",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Philips Hue Smart Lamp",
-        reviews: 6,
-        description: "Som ny – tidigare visning.",
-        availability: "I lager",
-        discount: 0.25,
-        price: 390,
-        originalPrice: 520,
-        stock: 10,
-        currency: "SEK",
-        to: "/product/314",
-        category: "home",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – ASUS ROG Zephyrus G14",
-        reviews: 10,
-        description: "Gaming-laptop med minimal användning.",
-        availability: "Endast online",
-        discount: 0.25,
-        price: 12490,
-        originalPrice: 16653.33,
-        stock: 3,
-        currency: "SEK",
-        to: "/product/315",
-        category: "gaming",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Apple Watch SE 44mm",
-        reviews: 8,
-        description: "Återställd och testad av tekniker.",
-        availability: "I lager | 12 mån garanti",
-        discount: 0.25,
-        price: 2990,
-        originalPrice: 3986.67,
-        stock: 8,
-        currency: "SEK",
-        to: "/product/316",
-        category: "watch",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Netatmo Weather Station",
-        reviews: 2,
-        description: "Returvara i perfekt skick.",
-        availability: "Online & butik",
-        discount: 0.25,
-        price: 990,
-        originalPrice: 1320,
-        stock: 10,
-        currency: "SEK",
-        to: "/product/317",
-        category: "home",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Samsung Soundbar HW-Q800B",
-        reviews: 5,
-        description: "Öppnad förpackning, komplett innehåll.",
-        availability: "Endast online",
-        discount: 0.25,
-        price: 2990,
-        originalPrice: 3986.67,
-        stock: 4,
-        currency: "SEK",
-        to: "/product/318",
-        category: "sound",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Logitech MX Master 3",
-        reviews: 11,
-        description: "Visningsenhet – mycket bra skick.",
-        availability: "I lager | Fri frakt",
-        discount: 0.25,
-        price: 790,
-        originalPrice: 1053.33,
-        stock: 10,
-        currency: "SEK",
-        to: "/product/319",
-        category: "computer",
-    },
-    {
-        image: "/tv.png",
-        title: "OUTLET – Jura E8 Espressomaskin",
-        reviews: 1,
-        description: "Använd i demo – noggrant rengjord.",
-        availability: "Begränsat lager",
-        discount: 0.25,
-        price: 7990,
-        originalPrice: 10653.33,
-        stock: 2,
-        currency: "SEK",
-        to: "/product/320",
-        category: "home",
-    },
+
+const outletMenuItems = [
+    { label: "OUTLET – TV & Hemmabio", category: "tv", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Datorer & Kontor", category: "computer", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Mobiler & Tablets", category: "phone", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Smartklockor", category: "watch", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Vitvaror", category: "vitvaror", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Gaming", category: "gaming", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Ljud & Högtalare", category: "sound", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Skönhet & Hälsa", category: "beauty", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Sport & Fritid", category: "sports", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Trädgård & Utemiljö", category: "garden", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Belysning & Smarta Hem", category: "smart-home", to: "/demo", image: "/tv.png" },
+    { label: "OUTLET – Kaffemaskiner & Kök", category: "kitchen", to: "/demo", image: "/tv.png" }
 ];
 
-// adding original pricee dynamically
-const productList = baseProductList.map(product => ({
-    ...product,
-    originalPrice: Math.round(product.price / (1 - product.discount))
-}))
 
 const OutletProduct = () => {
-    // const scrollRef = useRef<HTMLDivElement>(null);
+    const {products} = useAuth();
+
+
     const [selectedCategory, setSelectedCategory] = useState('');
-    // const [selectedStore, setSelectedStore] = useState('');
     const [sortBy, setSortBy] = useState('relevance');
+
+    // Get outlet products from global products list
+    const productList = products
+        .filter(p => p.title?.startsWith("OUTLET"))
+        .map(p => ({
+            ...p,
+            discount: 0.25,
+            originalPrice: Math.round(p.price / (1 - 0.25)),
+            image: "/image.png",
+            reviews: p.reviews ?? 0,
+            availability: p.availability ?? "Tillgänglighet okänd",
+            to: `/product/${p.id}`
+        }));
 
     const filteredProducts = productList
         .filter(p => selectedCategory ? p.category === selectedCategory : true)
@@ -333,19 +62,20 @@ const OutletProduct = () => {
             </article>
 
             <section className="flex overflow-x-auto gap-6 py-6 px-6 snap-x snap-mandatory border-b scrollbar-thin">
-                {sampleCategories.map((item) => (
+                {outletMenuItems.map((item, index) => (
                     <Link
-                        to={`/product/${item.id}`}
-                        key={item.id}
+                        to={item.to}
+                        key={index}
                         className="flex flex-col items-center min-w-[140px] max-w-[160px] snap-start text-center px-2"
+                        onClick={() => setSelectedCategory(item.category)} // optional: set filter
                     >
                         <div className="relative w-16 h-16 mb-2">
                             <div className="absolute -left-4 -top-1.5 w-10 h-10 bg-black text-white text-[8px] font-bold rounded-full flex items-center justify-center shadow">
                                 OUTLET
                             </div>
-                            <img src={item.image} alt={item.title} className="w-full h-full object-contain"/>
+                            <img src={item.image} alt={item.label} className="w-full h-full object-contain" />
                         </div>
-                        <p className="text-sm font-medium leading-snug break-words">{item.title}</p>
+                        <p className="text-sm font-medium leading-snug break-words">{item.label}</p>
                     </Link>
                 ))}
             </section>

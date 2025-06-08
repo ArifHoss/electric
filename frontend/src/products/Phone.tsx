@@ -58,7 +58,7 @@ const Phone = () => {
                         .map((product) => (
                             <ProductCard
                                 key={product.id}
-                                image={"/phone.png"}
+                                image={"/image.png"}
                                 title={product.title}
                                 reviews={product.reviews ?? 0}
                                 description={product.description}

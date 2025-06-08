@@ -54,7 +54,7 @@ const ProductDetail = () => {
                 {/* Product Image & Availability */}
                 <div>
                     <img
-                        src={product.image}
+                        src={"/image.png"}
                         alt={product.title}
                         className="w-full max-w-md mx-auto object-contain rounded-lg"
                     />

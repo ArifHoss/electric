@@ -52,7 +52,7 @@ const Vitavaror = () => {
                         .map((product) => (
                             <ProductCard
                                 key={product.id}
-                                image={"/refrigerator.png"}
+                                image={"/image.png"}
                                 title={product.title}
                                 reviews={product.reviews ?? 0}
                                 description={product.description}
