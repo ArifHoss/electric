@@ -1,7 +1,8 @@
 import {Link} from "react-router-dom";
 import ProductCard from "../banner/ProductCard.tsx";
 import Footer from "../components/Footer.tsx";
-import products from "../data/products.ts";
+import {useAuth} from "../components/AuthContext.tsx";
+
 
 const menuItems = [
     {label: "Diskmaskiner", to: "/demo", image: "/washing-machine.png"},
@@ -16,129 +17,9 @@ const menuItems = [
     {label: "Tvätt & Städ", to: "/demo", image: "/washing-machine.png"}
 ];
 
-// const productList = [
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Bosch Serie 4 Diskmaskin SMU4HVS01S",
-//         reviews: 18,
-//         description: "Tyst och effektiv diskmaskin med Home Connect-funktion.",
-//         availability: "I lager online (40+) | Finns i 36 butiker",
-//         price: 5990,
-//         category: "Vitvaror",
-//         currency: "SEK",
-//         stock: 100,
-//         to: "/product/401"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "LG F4WV709P1E Tvättmaskin",
-//         reviews: 21,
-//         description: "Energieffektiv tvättmaskin med AI Direct Drive och ångtvätt.",
-//         availability: "I lager online (22) | Finns i 30 butiker",
-//         price: 7990,
-//         category: "Vitvaror",
-//         currency: "SEK",
-//         stock: 70,
-//         to: "/product/402"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Electrolux PerfectCare 700 Torktumlare",
-//         reviews: 11,
-//         description: "Skonsam mot kläderna med värmepumpsteknik.",
-//         availability: "I lager online (14) | Finns i 28 butiker",
-//         price: 6990,
-//         category: "Vitvaror",
-//         currency: "SEK",
-//         stock: 65,
-//         to: "/product/403"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Samsung QuickDrive Kombimaskin",
-//         reviews: 9,
-//         description: "Tvätta och torka i ett – spara både tid och plats.",
-//         availability: "I lager online (16) | Finns i 25 butiker",
-//         price: 9990,
-//         category: "Vitvaror",
-//         currency: "SEK",
-//         stock: 60,
-//         to: "/product/404"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Electrolux Köksfläkt EFV90657OK",
-//         reviews: 7,
-//         description: "Stilren design och effektiv luftfiltrering.",
-//         availability: "I lager online | Endast online",
-//         price: 4990,
-//         category: "Vitvaror",
-//         currency: "SEK",
-//         stock: 50,
-//         to: "/product/405"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Siemens Inbyggnadsugn HB676G5S6S",
-//         reviews: 10,
-//         description: "Exakt temperaturkontroll med varmluft och pyrolytisk rengöring.",
-//         availability: "I lager online (12) | Finns i 18 butiker",
-//         price: 8990,
-//         category: "Vitvaror",
-//         currency: "SEK",
-//         stock: 45,
-//         to: "/product/406"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Whirlpool induktionshäll ACM802NE",
-//         reviews: 5,
-//         description: "Snabb och säker matlagning med flexibel zonindelning.",
-//         availability: "I lager online | Finns i 22 butiker",
-//         price: 5490,
-//         category: "Vitvaror",
-//         currency: "SEK",
-//         stock: 55,
-//         to: "/product/407"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Samsung Mikrovågsugn MS23K3513AW",
-//         reviews: 20,
-//         description: "Effektiv mikrovåg med stilren vit design.",
-//         availability: "I lager online (35+) | Finns i 40 butiker",
-//         price: 1290,
-//         category: "Vitvaror",
-//         currency: "SEK",
-//         stock: 110,
-//         to: "/product/408"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Epoq kökslåda med dämpning 40cm",
-//         reviews: 4,
-//         description: "Hög kvalitet för ditt drömkök.",
-//         availability: "I lager online | Endast i utvalda butiker",
-//         price: 790,
-//         category: "Kök",
-//         currency: "SEK",
-//         stock: 80,
-//         to: "/product/409"
-//     },
-//     {
-//         image: "/washing-drum.jpg",
-//         title: "Miele Scout RX3 Robotdammsugare",
-//         reviews: 13,
-//         description: "Kraftfull städning för hela hemmet.",
-//         availability: "I lager online (20+) | Finns i 30 butiker",
-//         price: 7990,
-//         category: "Hem",
-//         currency: "SEK",
-//         stock: 90,
-//         to: "/product/410"
-//     }
-// ];
+
 const KitchenWashing = () => {
+    const {products} = useAuth();
     return (
         <section>
             <header className="px-6 py-8">
@@ -165,9 +46,21 @@ const KitchenWashing = () => {
             <section className="p-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {products
-                        .filter(product => product.category === "LAPTOP".toUpperCase()) // CATEGORY NEED TO MATCH EXACTLY
-                        .map((product, idx) => (
-                            <ProductCard key={idx} {...product} />
+                        .filter((product)=> product.category==="KITCHEN" || product.category == "OTHER")
+                        .map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                image={"/kitchen.png"}
+                                title={product.title}
+                                reviews={product.reviews ?? 0}
+                                description={product.description}
+                                availability={product.availability ?? "Tillgänglighet okänd"}
+                                price={product.price}
+                                currency={product.currency}
+                                category={product.category}
+                                stock={product.stock}
+                                to={`/product/${product.id}`}
+                            />
                         ))}
                 </div>
             </section>
