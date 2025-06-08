@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState, useEffect} from 'react';
+import React, {createContext, useContext, useState, useEffect, useMemo} from 'react';
 import axios from "axios";
 import type {UserData} from '../types.ts';
 
@@ -20,6 +20,7 @@ type AuthContextType = {
     removeFromCart: (id: number) => void;
     decreaseQuantity: (id: number) => void;
     clearCart: () => void;
+    totalPrice: number;
     products: Product[];
 };
 
@@ -70,6 +71,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
     };
     const clearCart = () => setCart([]);
 
+    const totalPrice = useMemo(() => {
+        return cart.reduce((sum, item) => sum + item.price * (item.quantity ?? 1), 0);
+    }, [cart]);
+
     const logout = () => {
         localStorage.removeItem('email');
         localStorage.removeItem('cart');
@@ -108,7 +113,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
     return (
         <AuthContext.Provider value={{
             user, login, logout, cart, addToCart,
-            removeFromCart, decreaseQuantity, clearCart, products
+            removeFromCart, decreaseQuantity, clearCart, totalPrice, products
         }}>
             {children}
         </AuthContext.Provider>
@@ -124,7 +129,12 @@ export const useAuth = () => {
 
 // Cart-specific hook
 export const useCart = () => {
-    const {cart, addToCart, removeFromCart, decreaseQuantity, clearCart} = useAuth();
-    const totalItems = cart.reduce((sum, item) => sum + (item.quantity ?? 1), 0);
-    return {cart, addToCart, removeFromCart, decreaseQuantity, totalItems, clearCart};
+    const {cart, addToCart, removeFromCart, decreaseQuantity, clearCart, totalPrice} = useAuth();
+
+    const totalItems = useMemo(
+        () => cart.reduce((sum, item) => sum + (item.quantity ?? 1), 0),
+        [cart]
+    );
+
+    return {cart, addToCart, removeFromCart, decreaseQuantity, totalItems, clearCart, totalPrice};
 };

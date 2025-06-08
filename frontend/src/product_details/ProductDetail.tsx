@@ -89,7 +89,7 @@ const ProductDetail = () => {
                             Lägg till i kundvagn
                         </button>
                         <Link
-                            to="/cart"
+                            to="/kassa"
                             className="text-blue-600 underline hover:text-blue-800 text-sm self-center"
                         >
                             Gå till kundvagn

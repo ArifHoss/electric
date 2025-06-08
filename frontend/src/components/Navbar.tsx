@@ -119,15 +119,14 @@ const Navbar = () => {
             )}
 
             <div className="relative">
-                <Link to="/cart" className="flex flex-col items-center hover:text-blue-400">
-                    <FiShoppingCart className="text-xl"/>
-                    <span className="hidden md:inline text-xs">Kundvagn</span>
+                <Link to="/kassa" className="flex flex-col items-center hover:text-blue-400">
+                    <FiShoppingCart className="text-2xl" />
+                    <span className="hidden md:inline text-xs mt-1">Kundvagn</span>
                 </Link>
                 {totalItems > 0 && (
                     <span
-                        className="absolute -top-1 -right-2 bg-red-600 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
-                    {totalItems}
-                </span>
+                        className="absolute top-2 right-0 -translate-y-1/2 translate-x-1/2 bg-red-600 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md">{totalItems}
+                    </span>
                 )}
             </div>
         </div>
@@ -250,7 +249,7 @@ const Navbar = () => {
                             </Link>
                         )}
                         <div className="relative">
-                            <Link to="/cart">
+                            <Link to="/kassa">
                                 <FiShoppingCart className="text-xl hover:text-blue-400"/>
                             </Link>
                             {totalItems > 0 && (

@@ -33,6 +33,7 @@ import OutletProduct from "./products/OutletProduct.tsx";
 import ProductDetail from "./product_details/ProductDetail.tsx";
 import Demo from "./products/Demo.tsx";
 import Datorer from "./products/Datorer.tsx";
+import Kassa from "./components/Kassa.tsx";
 
 // Layout with Navbar + page content
 const Layout = () => (
@@ -78,6 +79,7 @@ function App() {
                     <Route path="/product/:id" element={<ProductDetail/>}/>
                     <Route path="/demo" element={<Demo/>}/>
                     <Route path="/computer" element={<Datorer/>}/>
+                    <Route path="/kassa" element={<Kassa/>}/>
                 </Route>
             </Routes>
         </Router>

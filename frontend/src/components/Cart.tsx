@@ -1,13 +1,8 @@
-import { useMemo } from "react";
 import { useCart } from "./AuthContext.tsx";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const { cart, addToCart, removeFromCart, decreaseQuantity, clearCart } = useCart();
-
-    const totalPrice = useMemo(() => {
-        return cart.reduce((sum, item) => sum + item.price * (item.quantity ?? 1), 0);
-    }, [cart]);
+    const { cart, addToCart, removeFromCart, decreaseQuantity, clearCart, totalPrice } = useCart();
 
     if (cart.length === 0) {
         return (
@@ -72,9 +67,9 @@ const Cart = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-3">
-                    <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+                    <Link to='/kassa' className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
                         Fortsätt till Kassan
-                    </button>
+                    </Link>
                     <Link
                         to="/"
                         className="bg-gray-100 text-blue-600 px-6 py-2 rounded border border-blue-600 hover:bg-blue-50 transition text-center"
