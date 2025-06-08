@@ -2,6 +2,37 @@
 
 # Fullstack Project: React + Express + PostgreSQL
 
+# Step 1: Clone and enter project
+git clone https://github.com/ArifHoss/electric.git
+cd electric
+
+# Step 2: Start PostgreSQL container
+docker run --name mydb_container \
+-e POSTGRES_PASSWORD=root \
+-e POSTGRES_DB=mydb \
+-p 5432:5432 \
+-v pgdata:/var/lib/postgresql/data \
+-d postgres
+
+# Step 3: Backend setup
+cd backend
+cp .env.example .env
+npm install
+npm run dev
+
+# Need to have this on .env
+DB_NAME=mydb
+DB_USER=postgres
+DB_PASS=root
+DB_HOST=localhost
+DB_PORT=5432
+PORT=3001
+
+# Step 4: Frontend setup (in new terminal)
+cd ../frontend
+npm install
+npm run dev
+
 ## 📦 Project Structure
 
 project-root/
