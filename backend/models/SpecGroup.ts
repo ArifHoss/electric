@@ -1,21 +1,21 @@
 // models/SpecGroup.ts
-import { DataTypes } from "sequelize";
-import sequelize from "../sequelize";
-import Product from "./Product";
+import { DataTypes } from 'sequelize';
+import sequelize from '../sequelize';
+import Product from './Product';
 
-const SpecGroup = sequelize.define("SpecGroup", {
+const SpecGroup = sequelize.define('SpecGroup', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
     },
     title: {
         type: DataTypes.STRING,
-        allowNull: false,
-    },
+        allowNull: false
+    }
 });
 
-Product.hasMany(SpecGroup, { foreignKey: "productId", as: "specGroups" });
-SpecGroup.belongsTo(Product, { foreignKey: "productId" });
+Product.hasMany(SpecGroup, { foreignKey: 'productId', as: 'specGroups' });
+SpecGroup.belongsTo(Product, { foreignKey: 'productId' });
 
 export default SpecGroup;
