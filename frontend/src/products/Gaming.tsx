@@ -1,31 +1,33 @@
-import { Link } from "react-router-dom";
-import ProductCard from "../banner/ProductCard.tsx";
-import Footer from "../components/Footer.tsx";
-import {useAuth} from "../components/AuthContext.tsx";
+import { Link } from 'react-router-dom';
+import ProductCard from '../banner/ProductCard.tsx';
+import Footer from '../components/Footer.tsx';
+import { useAuth } from '../components/AuthContext.tsx';
 // import products from "../data/products.ts";
 
 const menuItems = [
-    { label: "Spelkonsoler", to: "/demo", image: "/game.png" },
-    { label: "Gamingdatorer", to: "/demo", image: "/game.png" },
-    { label: "Gamingtillbehör", to: "/demo", image: "/game.png" },
-    { label: "Gamingheadset", to: "/demo", image: "/game.png" },
-    { label: "Gamingmöss", to: "/demo", image: "/game.png" },
-    { label: "Tangentbord", to: "/demo", image: "/game.png" },
-    { label: "Skärmar för gaming", to: "/demo", image: "/game.png" },
-    { label: "Gamingstolar", to: "/demo", image: "/game.png" },
-    { label: "VR-headset", to: "/demo", image: "/game.png" },
-    { label: "Spel och mjukvara", to: "/demo", image: "/game.png" },
+    { label: 'Spelkonsoler', to: '/demo', image: '/game.png' },
+    { label: 'Gamingdatorer', to: '/demo', image: '/game.png' },
+    { label: 'Gamingtillbehör', to: '/demo', image: '/game.png' },
+    { label: 'Gamingheadset', to: '/demo', image: '/game.png' },
+    { label: 'Gamingmöss', to: '/demo', image: '/game.png' },
+    { label: 'Tangentbord', to: '/demo', image: '/game.png' },
+    { label: 'Skärmar för gaming', to: '/demo', image: '/game.png' },
+    { label: 'Gamingstolar', to: '/demo', image: '/game.png' },
+    { label: 'VR-headset', to: '/demo', image: '/game.png' },
+    { label: 'Spel och mjukvara', to: '/demo', image: '/game.png' }
 ];
 
-
 const Gaming = () => {
-    const {products} = useAuth();
+    const { products } = useAuth();
     return (
         <section>
             <header className="px-6 py-12 max-w-7xl mx-auto">
-                <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">GAMING</h1>
+                <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">
+                    GAMING
+                </h1>
                 <p className="text-gray-600 text-base md:text-lg max-w-2xl">
-                    Allt för din ultimata spelupplevelse – konsoler, tillbehör och gaming-PC i världsklass.
+                    Allt för din ultimata spelupplevelse – konsoler, tillbehör
+                    och gaming-PC i världsklass.
                 </p>
             </header>
 
@@ -36,8 +38,14 @@ const Gaming = () => {
                         key={idx}
                         className="flex flex-col items-center justify-center gap-3 p-6 rounded-xl shadow-md bg-white hover:bg-gray-100 transition text-center"
                     >
-                        <img src={item.image} alt={item.label} className="w-16 h-16 object-contain" />
-                        <p className="text-lg font-semibold">{item.label.toUpperCase()}</p>
+                        <img
+                            src={item.image}
+                            alt={item.label}
+                            className="w-16 h-16 object-contain"
+                        />
+                        <p className="text-lg font-semibold">
+                            {item.label.toUpperCase()}
+                        </p>
                     </Link>
                 ))}
             </section>
@@ -49,11 +57,14 @@ const Gaming = () => {
                         .map((product) => (
                             <ProductCard
                                 key={product.id}
-                                image={"/image.png"}
+                                image={'/image.png'}
                                 title={product.title}
                                 reviews={product.reviews ?? 0}
                                 description={product.description}
-                                availability={product.availability ?? "Tillgänglighet okänd"}
+                                availability={
+                                    product.availability ??
+                                    'Tillgänglighet okänd'
+                                }
                                 price={product.price}
                                 currency={product.currency}
                                 category={product.category}

@@ -1,15 +1,15 @@
-import {FaEdgeLegacy} from "react-icons/fa";
-import {Link} from "react-router-dom";
-import {useState} from "react";
+import { FaEdgeLegacy } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Register = () => {
     const [email, setEmail] = useState('');
 
     const isValidEmail = email.match(/^[^@]+@[^@]+\.[^@]+$/);
 
-    const handleCreateNewUser = ()=>{
-        alert("created")
-    }
+    const handleCreateNewUser = () => {
+        alert('created');
+    };
 
     return (
         <div className="pt-20 px-4 max-w-md mx-auto space-y-4 ">
@@ -18,7 +18,7 @@ const Register = () => {
                 className="text-xl font-bold tracking-wide flex justify-center"
             >
                 ELECTRIC
-                <FaEdgeLegacy className="text-2xl text-green-700 font-bold"/>
+                <FaEdgeLegacy className="text-2xl text-green-700 font-bold" />
             </Link>
             <div className="text-center">
                 <p>Skapa användare</p>

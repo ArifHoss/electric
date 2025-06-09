@@ -1,26 +1,25 @@
-import Footer from "../components/Footer.tsx";
-import {Link} from "react-router-dom";
-import ProductCard from "../banner/ProductCard.tsx";
-import {useAuth} from "../components/AuthContext.tsx";
+import Footer from '../components/Footer.tsx';
+import { Link } from 'react-router-dom';
+import ProductCard from '../banner/ProductCard.tsx';
+import { useAuth } from '../components/AuthContext.tsx';
 
 const menuItems = [
-    {label: "Datorer", to: "/computer", image: "/computer-acc.png",},
-    {label: "Datorkomponenter", to: "/demo", image: "/componet.png"},
-    {label: "Datortillbehör", to: "/demo", image: "/keyboard.png"},
-    {label: "Skärmar & Tillbehör", to: "/demo", image: "/monitor.png"},
-    {label: "Surfplatta", to: "/demo", image: "/ipad.png"},
-    {label: "Tillbehör till Surfplatta", to: "/demo", image: "/ipad-acc.png"},
-    {label: "Skrivare & Kontor", to: "/demo", image: "/printer.png"},
-    {label: "Nätverk", to: "/demo", image: "/router.png"},
-    {label: "Hårddiskar & Lagring", to: "/demo", image: "/hard.png"},
-    {label: "Mjukvara", to: "/demo", image: "/microsoft.png"},
-    {label: "Hemmakontor", to: "/demo", image: "/cybersecurity.png"},
-    {label: "Tjänster-Datorer & Kontor", to: "/demo", image: "/service.png"},
-
+    { label: 'Datorer', to: '/computer', image: '/computer-acc.png' },
+    { label: 'Datorkomponenter', to: '/demo', image: '/componet.png' },
+    { label: 'Datortillbehör', to: '/demo', image: '/keyboard.png' },
+    { label: 'Skärmar & Tillbehör', to: '/demo', image: '/monitor.png' },
+    { label: 'Surfplatta', to: '/demo', image: '/ipad.png' },
+    { label: 'Tillbehör till Surfplatta', to: '/demo', image: '/ipad-acc.png' },
+    { label: 'Skrivare & Kontor', to: '/demo', image: '/printer.png' },
+    { label: 'Nätverk', to: '/demo', image: '/router.png' },
+    { label: 'Hårddiskar & Lagring', to: '/demo', image: '/hard.png' },
+    { label: 'Mjukvara', to: '/demo', image: '/microsoft.png' },
+    { label: 'Hemmakontor', to: '/demo', image: '/cybersecurity.png' },
+    { label: 'Tjänster-Datorer & Kontor', to: '/demo', image: '/service.png' }
 ];
 
 const ComputerAndOffice = () => {
-    const {products} = useAuth();
+    const { products } = useAuth();
     return (
         <section>
             <header className="p-5">
@@ -30,12 +29,12 @@ const ComputerAndOffice = () => {
             <section className="px-6 py-12 max-w-7xl mx-auto">
                 <h2 className="text-3xl font-bold mb-4">DATORER OCH KONTOR</h2>
                 <p className="mb-6">
-                    Hos Electric finner du ett omfattande sortiment av datorer och datatillbehör. Bland annat
-                    datorkomponenter, skrivare, hårddiskar och programvaror.
+                    Hos Electric finner du ett omfattande sortiment av datorer
+                    och datatillbehör. Bland annat datorkomponenter, skrivare,
+                    hårddiskar och programvaror.
                 </p>
             </section>
-            <section
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-6 py-6">
+            <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 px-6 py-6">
                 {menuItems.map((item, idx) => (
                     <Link
                         to={item.to}
@@ -55,15 +54,18 @@ const ComputerAndOffice = () => {
                 <h1 className="p-5 font-bold text-2xl">NÅGOT FÖR DIG?</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                     {products
-                        .filter((product) => product.category === "LAPTOP")
+                        .filter((product) => product.category === 'LAPTOP')
                         .map((product) => (
                             <ProductCard
                                 key={product.id}
-                                image={"/image.png"}
+                                image={'/image.png'}
                                 title={product.title}
                                 reviews={product.reviews ?? 0}
                                 description={product.description}
-                                availability={product.availability ?? "Tillgänglighet okänd"}
+                                availability={
+                                    product.availability ??
+                                    'Tillgänglighet okänd'
+                                }
                                 price={product.price}
                                 currency={product.currency}
                                 category={product.category}
@@ -74,7 +76,7 @@ const ComputerAndOffice = () => {
                 </div>
             </section>
             <footer>
-                <Footer/>
+                <Footer />
             </footer>
         </section>
     );

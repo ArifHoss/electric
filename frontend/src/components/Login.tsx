@@ -1,9 +1,9 @@
-import {Link, useNavigate} from 'react-router-dom';
-import {FaEdgeLegacy} from 'react-icons/fa';
-import {useState} from 'react';
-import {useAuth} from "./AuthContext.tsx";
-import {loginUser} from "../api/user.ts";
-import axios from "axios";
+import { Link, useNavigate } from 'react-router-dom';
+import { FaEdgeLegacy } from 'react-icons/fa';
+import { useState } from 'react';
+import { useAuth } from './AuthContext.tsx';
+import { loginUser } from '../api/user.ts';
+import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,7 +11,7 @@ const Login = () => {
     const [errorMsg, setErrorMsg] = useState('');
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
-    const {login} = useAuth();
+    const { login } = useAuth();
 
     const navigate = useNavigate();
 
@@ -40,15 +40,13 @@ const Login = () => {
                 className="text-xl font-bold tracking-wide flex justify-center"
             >
                 ELECTRIC
-                <FaEdgeLegacy className="text-2xl text-green-700 font-bold"/>
+                <FaEdgeLegacy className="text-2xl text-green-700 font-bold" />
             </Link>
             <h4 className="font-semibold flex justify-center">INLOGGNING</h4>
 
             <div className="flex justify-center">
                 <div className="flex gap-2 text-sm font-medium bg-gray-300 p-2 rounded-full max-w-[12rem]">
-                    <button
-                        className="py-2 px-6 rounded-full bg-white text-black"
-                    >
+                    <button className="py-2 px-6 rounded-full bg-white text-black">
                         Privat
                     </button>
                     <button
@@ -59,10 +57,13 @@ const Login = () => {
                     </button>
                 </div>
             </div>
-            <form className="space-y-2" onSubmit={(e) =>{
-                e.preventDefault();
-                handleLogin();
-            }}>
+            <form
+                className="space-y-2"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleLogin();
+                }}
+            >
                 <label htmlFor="email" className="block text-sm font-medium">
                     E-post
                 </label>
@@ -81,7 +82,9 @@ const Login = () => {
                     }}
                     className="w-full px-3 py-2 rounded border border-gray-300"
                 />
-                {emailError && <p className="text-red-500 text-sm">{emailError}</p>}
+                {emailError && (
+                    <p className="text-red-500 text-sm">{emailError}</p>
+                )}
 
                 <label htmlFor="password" className="block text-sm font-medium">
                     Lösenord
@@ -94,14 +97,18 @@ const Login = () => {
                         const value = e.target.value;
                         setPassword(value);
                         if (value.length < 6) {
-                            setPasswordError('Lösenordet måste vara minst 6 tecken');
+                            setPasswordError(
+                                'Lösenordet måste vara minst 6 tecken'
+                            );
                         } else {
                             setPasswordError('');
                         }
                     }}
                     className="w-full px-3 py-2 rounded border border-gray-300"
                 />
-                {passwordError && <p className="text-red-500 text-sm">{passwordError}</p>}
+                {passwordError && (
+                    <p className="text-red-500 text-sm">{passwordError}</p>
+                )}
 
                 <Link
                     to="/forget-pass"
@@ -125,11 +132,15 @@ const Login = () => {
                 </button>
                 <div className="flex justify-center">
                     <p>Har ni inget konto? </p>
-                    <Link to='/register' className="underline">Registera</Link>
+                    <Link to="/register" className="underline">
+                        Registera
+                    </Link>
                 </div>
                 <div className="flex justify-center">
                     <p>Har ni inget konto? </p>
-                    <Link to='/createAccount' className="underline">Skapa konto</Link>
+                    <Link to="/createAccount" className="underline">
+                        Skapa konto
+                    </Link>
                 </div>
             </form>
         </div>

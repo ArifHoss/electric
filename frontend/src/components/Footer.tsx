@@ -1,11 +1,19 @@
-import {Link} from "react-router-dom";
-import {GiReturnArrow, GiStorkDelivery} from "react-icons/gi";
-import {MdOutlinePriceCheck} from "react-icons/md";
+import { Link } from 'react-router-dom';
+import { GiReturnArrow, GiStorkDelivery } from 'react-icons/gi';
+import { MdOutlinePriceCheck } from 'react-icons/md';
 
 const menuItems = [
-    {label: "Boka & Hämta inom 30 min", to: "/demo", icon: <GiStorkDelivery/>},
-    {label: "50 dagars öppet köp för klubbmedlemmar", to: "/demo", icon: <GiReturnArrow/>},
-    {label: "Prismatch", to: "/demo", icon: <MdOutlinePriceCheck/>},
+    {
+        label: 'Boka & Hämta inom 30 min',
+        to: '/demo',
+        icon: <GiStorkDelivery />
+    },
+    {
+        label: '50 dagars öppet köp för klubbmedlemmar',
+        to: '/demo',
+        icon: <GiReturnArrow />
+    },
+    { label: 'Prismatch', to: '/demo', icon: <MdOutlinePriceCheck /> }
 ];
 
 const Footer = () => {
@@ -31,52 +39,97 @@ const Footer = () => {
                 <div>
                     <h3 className="font-semibold mb-2">Kundtjänst</h3>
                     <ul className="space-y-1">
-                        <li><Link to="/demo">Kundtjänst</Link></li>
-                        <li><Link to="/demo">Hitta butik/varuhus</Link></li>
-                        <li><Link to="/demo">Spåra din leverans</Link></li>
-                        <li><Link to="/demo">Support via fjärrhjälp</Link></li>
-                        <li><Link to="/demo">Bluffmail m.m.</Link></li>
-                        <li><Link to="/demo">Kontakta oss</Link></li>
+                        <li>
+                            <Link to="/demo">Kundtjänst</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Hitta butik/varuhus</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Spåra din leverans</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Support via fjärrhjälp</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Bluffmail m.m.</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Kontakta oss</Link>
+                        </li>
                     </ul>
                 </div>
                 {/* Information */}
                 <div>
                     <h3 className="font-semibold mb-2">Information</h3>
                     <ul className="space-y-1">
-                        <li><Link to="/demo">Leverans- och installationsavtal</Link></li>
-                        <li><Link to="/demo">Cookies på Elgiganten</Link></li>
-                        <li><Link to="/demo">Marketplace</Link></li>
-                        <li><Link to="/demo">Personuppgiftspolicy</Link></li>
-                        <li><Link to="/demo">Visselblåsning</Link></li>
+                        <li>
+                            <Link to="/demo">
+                                Leverans- och installationsavtal
+                            </Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Cookies på Elgiganten</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Marketplace</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Personuppgiftspolicy</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Visselblåsning</Link>
+                        </li>
                     </ul>
                 </div>
                 {/* Inspiration */}
                 <div>
                     <h3 className="font-semibold mb-2">Inspiration</h3>
                     <ul className="space-y-1">
-                        <li><Link to="/demo">Kampanjer</Link></li>
-                        <li><Link to="/demo">Guider & inspiration</Link></li>
-                        <li><Link to="/demo">Black Friday 2025</Link></li>
-                        <li><Link to="/demo">Mellandagsrea 2025</Link></li>
+                        <li>
+                            <Link to="/demo">Kampanjer</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Guider & inspiration</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Black Friday 2025</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Mellandagsrea 2025</Link>
+                        </li>
                     </ul>
                 </div>
                 {/* Om Electric */}
                 <div>
                     <h3 className="font-semibold mb-2">Om Electric</h3>
                     <ul className="space-y-1">
-                        <li><Link to="/demo">Ledningsgrupp</Link></li>
-                        <li><Link to="/demo">Jobba hos oss</Link></li>
-                        <li><Link to="/demo">Elgiganten Foundation</Link></li>
-                        <li><Link to="/demo">Elgiganten FöretagKundklubb</Link></li>
-                        <li><Link to="/demo">Pressrum</Link></li>
-                        <li><Link to="/demo">Hållbarhet</Link></li>
+                        <li>
+                            <Link to="/demo">Ledningsgrupp</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Jobba hos oss</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Elgiganten Foundation</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Elgiganten FöretagKundklubb</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Pressrum</Link>
+                        </li>
+                        <li>
+                            <Link to="/demo">Hållbarhet</Link>
+                        </li>
                     </ul>
                 </div>
             </section>
 
             {/* Bottom Note */}
             <div className="text-center py-4 text-xs text-gray-500">
-                © {new Date().getFullYear()} Electric. Alla rättigheter förbehållna.
+                © {new Date().getFullYear()} Electric. Alla rättigheter
+                förbehållna.
             </div>
         </footer>
     );

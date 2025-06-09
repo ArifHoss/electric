@@ -1,6 +1,12 @@
-import React, {createContext, useContext, useState, useEffect, useMemo} from 'react';
-import axios from "axios";
-import type {UserData} from '../types.ts';
+import React, {
+    createContext,
+    useContext,
+    useState,
+    useEffect,
+    useMemo
+} from 'react';
+import axios from 'axios';
+import type { UserData } from '../types.ts';
 
 interface Product {
     id: number;
@@ -19,7 +25,7 @@ interface Product {
     modelNumber?: string;
     releaseDate?: string;
     features?: string[];
-    quantity?:number;
+    quantity?: number;
 }
 
 type AuthContextType = {
@@ -37,7 +43,9 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+    children
+}) => {
     const [user, setUser] = useState<UserData | null>(null);
     const [products, setProducts] = useState<Product[]>([]);
 
@@ -63,16 +71,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
 
     useEffect(() => {
         axios
-            .get("http://localhost:3001/products")
+            .get('http://localhost:3001/products')
             .then((res) => setProducts(res.data))
-            .catch((err) => console.error("Failed to fetch products:", err));
+            .catch((err) => console.error('Failed to fetch products:', err));
     }, []);
-
 
     const login = async (email: string) => {
         try {
             localStorage.setItem('email', email);
-            const res = await axios.get(`http://localhost:3001/users/email/${email}`);
+            const res = await axios.get(
+                `http://localhost:3001/users/email/${email}`
+            );
             const data: UserData = res.data;
             setUser(data);
         } catch (err) {
@@ -83,7 +92,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
     const clearCart = () => setCart([]);
 
     const totalPrice = useMemo(() => {
-        return cart.reduce((sum, item) => sum + item.price * (item.quantity ?? 1), 0);
+        return cart.reduce(
+            (sum, item) => sum + item.price * (item.quantity ?? 1),
+            0
+        );
     }, [cart]);
 
     const logout = () => {
@@ -94,37 +106,50 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
     };
 
     const addToCart = (product: Product) => {
-        setCart(prev =>
-            prev.find(item => item.id === product.id)
-                ? prev.map(item =>
-                    item.id === product.id
-                        ? {...item, quantity: (item.quantity ?? 1) + 1}
-                        : item
-                )
-                : [...prev, {...product, quantity: 1}]
+        setCart((prev) =>
+            prev.find((item) => item.id === product.id)
+                ? prev.map((item) =>
+                      item.id === product.id
+                          ? { ...item, quantity: (item.quantity ?? 1) + 1 }
+                          : item
+                  )
+                : [...prev, { ...product, quantity: 1 }]
         );
     };
 
     const removeFromCart = (id: number) => {
-        console.log("Removing item with ID:", id);
-        setCart(prev => prev.filter(item => item.id !== id));
+        console.log('Removing item with ID:', id);
+        setCart((prev) => prev.filter((item) => item.id !== id));
     };
 
     const decreaseQuantity = (id: number) => {
-        setCart(prev =>
-            prev.map(item =>
+        setCart((prev) =>
+            prev.map((item) =>
                 item.id === id
-                    ? {...item, quantity: Math.max((item.quantity ?? 1) - 1, 1)}
+                    ? {
+                          ...item,
+                          quantity: Math.max((item.quantity ?? 1) - 1, 1)
+                      }
                     : item
             )
         );
     };
 
     return (
-        <AuthContext.Provider value={{
-            user, login, logout, cart, addToCart,
-            removeFromCart, decreaseQuantity, clearCart, totalPrice, products
-        }}>
+        <AuthContext.Provider
+            value={{
+                user,
+                login,
+                logout,
+                cart,
+                addToCart,
+                removeFromCart,
+                decreaseQuantity,
+                clearCart,
+                totalPrice,
+                products
+            }}
+        >
             {children}
         </AuthContext.Provider>
     );
@@ -139,12 +164,27 @@ export const useAuth = () => {
 
 // Cart-specific hook
 export const useCart = () => {
-    const {cart, addToCart, removeFromCart, decreaseQuantity, clearCart, totalPrice} = useAuth();
+    const {
+        cart,
+        addToCart,
+        removeFromCart,
+        decreaseQuantity,
+        clearCart,
+        totalPrice
+    } = useAuth();
 
     const totalItems = useMemo(
         () => cart.reduce((sum, item) => sum + (item.quantity ?? 1), 0),
         [cart]
     );
 
-    return {cart, addToCart, removeFromCart, decreaseQuantity, totalItems, clearCart, totalPrice};
+    return {
+        cart,
+        addToCart,
+        removeFromCart,
+        decreaseQuantity,
+        totalItems,
+        clearCart,
+        totalPrice
+    };
 };

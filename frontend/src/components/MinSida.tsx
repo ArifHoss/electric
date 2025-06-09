@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext.tsx';
-import MyPage from "./MyPage.tsx";
-import Profile from "./Profile.tsx";
-import OrderHistory from "./OrderHistory.tsx";
+import MyPage from './MyPage.tsx';
+import Profile from './Profile.tsx';
+import OrderHistory from './OrderHistory.tsx';
 import MinaTjanster from './MinaTjanster.tsx';
-import Favoriter from "./Favoriter.tsx";
-import KundKlubb from "./KundKlubb.tsx";
+import Favoriter from './Favoriter.tsx';
+import KundKlubb from './KundKlubb.tsx';
 
 const tabs = [
     'MIN SIDA',
@@ -31,19 +31,19 @@ function MinSida() {
     const renderTabContent = () => {
         switch (activeTab) {
             case 'MIN SIDA':
-                return <MyPage setActiveTab={setActiveTab}/>;
+                return <MyPage setActiveTab={setActiveTab} />;
             case 'PROFIL':
-                return <Profile/>;
+                return <Profile />;
             case 'ORDERHISTORIK':
-                return <OrderHistory/>;
+                return <OrderHistory />;
             case 'MINA TJÄNSTER':
-                return <MinaTjanster/>;
+                return <MinaTjanster />;
             case 'FAVORITER':
-                return <Favoriter/>;
+                return <Favoriter />;
             case 'KUNDKLUBB':
-                return <KundKlubb/>;
+                return <KundKlubb />;
             default:
-                return <MyPage setActiveTab={setActiveTab}/>;
+                return <MyPage setActiveTab={setActiveTab} />;
         }
     };
 
@@ -51,7 +51,9 @@ function MinSida() {
         <div className="max-w-4xl mx-auto px-4 py-10 space-y-6">
             <div className="flex justify-between items-center">
                 <h1 className="text-2xl font-semibold">
-                    {user ? `Hej, ${user.firstName} ${user.lastName} 👋` : 'Välkommen 👋'}
+                    {user
+                        ? `Hej, ${user.firstName} ${user.lastName} 👋`
+                        : 'Välkommen 👋'}
                 </h1>
                 <button
                     onClick={handleLogout}

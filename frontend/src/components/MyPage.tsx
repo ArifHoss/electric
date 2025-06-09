@@ -1,5 +1,5 @@
-import { useAuth } from "./AuthContext.tsx";
-import { IoIosHeart } from "react-icons/io";
+import { useAuth } from './AuthContext.tsx';
+import { IoIosHeart } from 'react-icons/io';
 
 type Props = {
     setActiveTab: (tab: string) => void;
@@ -20,9 +20,15 @@ const MyPage = ({ setActiveTab }: Props) => {
                 {/* 1. Mina Uppgifter */}
                 <div className="border border-gray-300 rounded-md p-4 shadow-sm">
                     <h2 className="text-lg font-bold mb-3">Mina Uppgifter</h2>
-                    <p><strong>Namn:</strong> {user.firstName} {user.lastName}</p>
-                    <p><strong>E-post:</strong> {user.email}</p>
-                    <p><strong>Telefon:</strong> {user.phone}</p>
+                    <p>
+                        <strong>Namn:</strong> {user.firstName} {user.lastName}
+                    </p>
+                    <p>
+                        <strong>E-post:</strong> {user.email}
+                    </p>
+                    <p>
+                        <strong>Telefon:</strong> {user.phone}
+                    </p>
                     <button
                         onClick={handleUpdateClick}
                         className="text-blue-600 underline mt-2"
@@ -34,8 +40,12 @@ const MyPage = ({ setActiveTab }: Props) => {
                 {/* 2. Land & Födelsedatum */}
                 <div className="border border-gray-300 rounded-md p-4 shadow-sm">
                     <h2 className="text-lg font-bold mb-3">Land</h2>
-                    <p><strong>Land:</strong> {user.country}</p>
-                    <p><strong>Födelsedatum:</strong> {user.birthDate}</p>
+                    <p>
+                        <strong>Land:</strong> {user.country}
+                    </p>
+                    <p>
+                        <strong>Födelsedatum:</strong> {user.birthDate}
+                    </p>
                     <button
                         onClick={handleUpdateClick}
                         className="text-blue-600 underline mt-2"
@@ -48,7 +58,9 @@ const MyPage = ({ setActiveTab }: Props) => {
                 <div className="border border-gray-300 rounded-md p-4 shadow-sm">
                     <h2 className="text-lg font-bold mb-3">Favoritbutik</h2>
                     <p>Ingen butik vald.</p>
-                    <button className="text-blue-600 underline mt-2">Välj butik</button>
+                    <button className="text-blue-600 underline mt-2">
+                        Välj butik
+                    </button>
                 </div>
 
                 {/* 4. Kundklubb */}
@@ -57,7 +69,8 @@ const MyPage = ({ setActiveTab }: Props) => {
                     <div className="flex items-start gap-2 mb-2">
                         <IoIosHeart className="text-red-500 text-2xl mt-1" />
                         <p className="text-gray-700">
-                            Medlemskap i Elgigantens kundklubb ger dig rabatter och erbjudanden.
+                            Medlemskap i Elgigantens kundklubb ger dig rabatter
+                            och erbjudanden.
                         </p>
                     </div>
                     <button className="text-white bg-green-500 hover:bg-green-600 px-4 py-1 rounded">

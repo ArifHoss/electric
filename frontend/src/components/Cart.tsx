@@ -1,8 +1,15 @@
-import { useCart } from "./AuthContext.tsx";
-import { Link } from "react-router-dom";
+import { useCart } from './AuthContext.tsx';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
-    const { cart, addToCart, removeFromCart, decreaseQuantity, clearCart, totalPrice } = useCart();
+    const {
+        cart,
+        addToCart,
+        removeFromCart,
+        decreaseQuantity,
+        clearCart,
+        totalPrice
+    } = useCart();
 
     if (cart.length === 0) {
         return (
@@ -20,7 +27,10 @@ const Cart = () => {
             <h2 className="text-3xl font-bold mb-6">Din kundvagn</h2>
             <ul className="space-y-4">
                 {cart.map((item) => (
-                    <li key={item.id} className="flex justify-between items-center border-b pb-4">
+                    <li
+                        key={item.id}
+                        className="flex justify-between items-center border-b pb-4"
+                    >
                         <div>
                             <p className="font-medium text-lg">{item.title}</p>
                             <div className="flex items-center gap-2 mt-2">
@@ -31,7 +41,9 @@ const Cart = () => {
                                 >
                                     -
                                 </button>
-                                <span className="font-semibold text-lg">{item.quantity}</span>
+                                <span className="font-semibold text-lg">
+                                    {item.quantity}
+                                </span>
                                 <button
                                     className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
                                     onClick={() => addToCart(item)}
@@ -58,7 +70,10 @@ const Cart = () => {
 
             <div className="mt-8 text-right space-y-4 md:space-y-0 md:flex md:items-center md:justify-between">
                 <div className="flex justify-end mb-4">
-                    <button onClick={clearCart} className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+                    <button
+                        onClick={clearCart}
+                        className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+                    >
                         Töm kundvagn
                     </button>
                 </div>
@@ -67,7 +82,10 @@ const Cart = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-3">
-                    <Link to='/kassa' className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
+                    <Link
+                        to="/kassa"
+                        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+                    >
                         Fortsätt till Kassan
                     </Link>
                     <Link
