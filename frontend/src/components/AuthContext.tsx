@@ -5,10 +5,10 @@ import type {UserData} from '../types.ts';
 interface Product {
     id: number;
     title: string;
-    description: string;
+    description?: string;
     category: string;
     price: number;
-    currency: string;
+    currency?: string;
     stock: number;
     image?: string;
     reviews?: number;
@@ -90,7 +90,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}
         localStorage.removeItem('email');
         localStorage.removeItem('cart');
         setUser(null);
-        // setCart([]);
         clearCart();
     };
 

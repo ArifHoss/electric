@@ -2,7 +2,8 @@ import ProductCard from "../banner/ProductCard.tsx";
 import {useAuth} from "../components/AuthContext.tsx";
 
 const Demo = () => {
-   const{products} = useAuth();
+    const {products} = useAuth();
+
 
     return (
         <section className="p-6">
@@ -20,7 +21,7 @@ const Demo = () => {
                             image={"/image.png"}
                             title={product.title}
                             reviews={product.reviews ?? 0}
-                            description={product.description}
+                            description={product.description ?? "Ingen beskrivning tillgänglig"}
                             availability={product.availability ?? "Tillgänglighet okänd"}
                             price={product.price}
                             currency={product.currency}
